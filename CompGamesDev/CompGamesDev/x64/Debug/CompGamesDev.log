@@ -1,2 +1,7 @@
-﻿  CompGamesDev.vcxproj -> H:\GameDev\CompGamesDev\x64\Debug\CompGamesDev.exe
-  CompGamesDev.vcxproj -> H:\GameDev\CompGamesDev\x64\Debug\CompGamesDev.pdb (Partial PDB)
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(387,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (CompGamesDev.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Renderer.cpp
+  Generating Code...
+  Compiling...
+  main.cpp
+  Generating Code...
+  CompGamesDev.vcxproj -> C:\Users\tywhi\Documents\Uni\GameDev\CompGamesDev\x64\Debug\Game.exe
