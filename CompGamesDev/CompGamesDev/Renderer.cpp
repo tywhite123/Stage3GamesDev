@@ -1,6 +1,6 @@
 #include "Renderer.h"
 
-Renderer::Renderer(Window &parent) : OGLRenderer(parent)
+RendererO::RendererO(Window &parent) : OGLRenderer(parent)
 {
 	heightMap = new HeightMap(TEXTUREDIR"terrain.raw");
 	camera = new Camera();
@@ -34,21 +34,21 @@ Renderer::Renderer(Window &parent) : OGLRenderer(parent)
 }
 
 
-Renderer::~Renderer()
+RendererO::~RendererO()
 {
 	delete heightMap;
 	delete camera;
 	//delete sphere;
 }
 
-void Renderer::UpdateScene(float msec)
+void RendererO::UpdateScene(float msec)
 {
 	camera->UpdateCamera(msec);
 	viewMatrix = camera->BuildViewMatrix();
 
 }
 
-void Renderer::RenderScene()
+void RendererO::RenderScene()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
