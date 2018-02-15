@@ -4,7 +4,7 @@
 
 
 
-Graphics::Graphics() : w("CSC3224 - Game Engine", 1920, 1080), r(w)
+Graphics::Graphics(Window &w) :/* w("CSC3224 - Game Engine", 1920, 1080),*/ r(w)
 {
 	Mesh* m = Mesh::GenerateTriangle();
 	Shader* s = new Shader(SHADERDIR"basicVert.glsl", SHADERDIR"BasicFrag.glsl");
@@ -34,9 +34,9 @@ Graphics::~Graphics()
 {
 }
 
-void Graphics::GraphicsUpdate(/*float msec*/)
+void Graphics::GraphicsUpdate(float msec)
 {
-	msec = w.GetTimer()->GetTimedMS();
+	//msec = w.GetTimer()->GetTimedMS();
 	//r.RenderScene();
 	r.UpdateScene(msec);
 	r.RenderScene();

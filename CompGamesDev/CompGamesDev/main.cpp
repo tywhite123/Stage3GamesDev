@@ -29,12 +29,14 @@ int main() {
 		renderer.RenderScene();
 	}*/
 
-	Graphics g;
+	Window w("CSC3224 - Game Engine", 1920, 1080);
 
-	/*while(true)
-	{
-		g.GraphicsUpdate();
-	}*/
+	Graphics g(w);
+
+	while (w.UpdateWindow() && !Window::GetKeyboard()->KeyDown(KEYBOARD_ESCAPE)) {
+		g.GraphicsUpdate(w.GetTimer()->GetTimedMS());
+	}
+
 
 
 	return 0;

@@ -6,20 +6,20 @@
 class Graphics
 {
 public:
-	Graphics();
+	Graphics(Window &parent);
 	~Graphics();
 
-	void GraphicsUpdate(/*float msec*/);
+	void GraphicsUpdate(float msec);
 
-	bool CheckEsc() {
-		Window::GetKeyboard()->KeyDown(KEYBOARD_ESCAPE);
-	}
+	//bool CheckEsc() {
+		//Window::GetKeyboard()->KeyDown(KEYBOARD_ESCAPE);
+	//}
 
 
-	Window getWindow() { return w; }
+	//Window getWindow() { return w; }
 
 private:
-	Window w;
+	//Window w;
 	Renderer r;
 
 	float msec;
