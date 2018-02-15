@@ -1,14 +1,14 @@
 #pragma once
 
-#include "../../nclgl/OGLRenderer.h"
-#include "../../nclgl/Camera.h"
-#include "../../nclgl/HeightMap.h"
+#include <nclgl\OGLRenderer.h>
+#include <nclgl\Camera.h>
+#include <nclgl\HeightMap.h>
 
-class Renderer : public OGLRenderer
+class RendererO : public OGLRenderer
 {
 public:
-	Renderer(Window &parent);
-	virtual ~Renderer();
+	RendererO(Window &parent);
+	virtual ~RendererO();
 
 	virtual void RenderScene();
 	virtual void UpdateScene(float msec);

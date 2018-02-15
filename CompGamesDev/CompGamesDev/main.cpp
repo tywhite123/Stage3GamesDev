@@ -1,5 +1,6 @@
 #include <nclgl\Window.h>
 #include "Renderer.h"
+#include "..\Renderer\Graphics.h"
 
 /*int main() {
 	Window w("Test", 800, 600);
@@ -17,6 +18,8 @@ int main() {
 	if (!renderer.HasInitialised()) {
 		return -1;
 	}
+
+	Graphics graphics(w, renderer);
 
 	w.LockMouseToWindow(true);
 	w.ShowOSPointer(false);
