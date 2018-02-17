@@ -33,10 +33,10 @@ int main() {
 	Window w("CSC3224 - Game Engine", 1920, 1080);
 
 	Graphics g(w);
-	Physics p();
 
 	while (w.UpdateWindow() && !Window::GetKeyboard()->KeyDown(KEYBOARD_ESCAPE)) {
 		g.GraphicsUpdate(w.GetTimer()->GetTimedMS());
+
 	}
 
 
