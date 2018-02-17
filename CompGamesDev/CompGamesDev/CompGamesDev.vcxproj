@@ -72,7 +72,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>..\..\GLEW\include;..\..\SOIL;..\..\;..\;$(IncludePath)</IncludePath>
-    <LibraryPath>..\..\SOIL\$(Platform)\$(Configuration);..\..\GLEW\libx64;..\$(Platform)\$(Configuration);$(LibraryPath)</LibraryPath>
+    <LibraryPath>..\lib\$(Configuration);..\..\SOIL\$(Platform)\$(Configuration);..\..\GLEW\libx64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
