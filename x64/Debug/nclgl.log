@@ -1,16 +1,3 @@
-﻿  Skipping... (no relevant changes detected)
-  Window.cpp
-  Shader.cpp
-  SceneNode.cpp
-  Quaternion.cpp
-  Plane.cpp
-  OGLRenderer.cpp
-  OBJMesh.cpp
-  Mouse.cpp
-  Mesh.cpp
-  Matrix4.cpp
-  Keyboard.cpp
-  HeightMap.cpp
-  GameTimer.cpp
-  Frustum.cpp
+﻿  OGLRenderer.cpp
+h:\gamedev\nclgl\oglrenderer.cpp(413): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
   nclgl.vcxproj -> H:\GameDev\CompGamesDev\x64\Debug\nclgl.lib

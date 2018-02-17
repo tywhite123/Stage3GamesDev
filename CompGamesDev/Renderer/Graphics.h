@@ -22,6 +22,9 @@ private:
 	//Window w;
 	Renderer r;
 
+	Mesh* m;
+	Shader* s;
+
 	float msec;
 };
 
