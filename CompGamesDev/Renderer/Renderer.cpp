@@ -48,5 +48,6 @@ void Renderer::UpdateScene(float msec)
 {
 	for (vector<RenderObject*>::iterator i = renderObjects.begin(); i != renderObjects.end(); ++i) {
 		(*i)->Update(msec);
+		(*i)->SetModelMatrix(Matrix4::Translation(Vector3(obj.at(*i)->getXPos(), obj.at(*i)->getYPos(), -5.0f)));
 	}
 }

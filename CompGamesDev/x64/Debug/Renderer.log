@@ -1,4 +1,2 @@
-﻿  Renderer.cpp
-  Graphics.cpp
-  Generating Code...
-  Renderer.vcxproj -> H:\GameDev\CompGamesDev\x64\Debug\Graphics.lib
+﻿  Graphics.cpp
+  Renderer.vcxproj -> H:\GameDev\CompGamesDev\lib\Debug\Graphics.lib

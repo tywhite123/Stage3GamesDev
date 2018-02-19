@@ -1,5 +1,6 @@
 #include <nclgl\Window.h>
 #include "Renderer.h"
+#include "GameObject.h"
 #include <Renderer\Graphics.h>
 #include <Physics\Physics.h>
 
@@ -32,10 +33,15 @@ int main() {
 
 	Window w("CSC3224 - Game Engine", 1920, 1080);
 
-	Graphics g(w);
+	vector<GameObject*> gameObjects;
+	gameObjects.push_back(new GameObject(0.0f, 4.0f));
+
+	Graphics graphics(w, gameObjects);
+	Physics physics(gameObjects);
 
 	while (w.UpdateWindow() && !Window::GetKeyboard()->KeyDown(KEYBOARD_ESCAPE)) {
-		g.GraphicsUpdate(w.GetTimer()->GetTimedMS());
+		graphics.GraphicsUpdate(w.GetTimer()->GetTimedMS());
+		physics.PhysicsUpdate(w.GetTimer()->GetTimedMS());
 
 	}
 

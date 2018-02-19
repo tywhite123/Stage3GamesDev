@@ -2,6 +2,8 @@
 #include <nclgl\Camera.h>
 #include "RenderObject.h"
 #include <vector>
+#include <map>
+#include "..\CompGamesDev\GameObject.h"
 
 using namespace std;
 
@@ -22,6 +24,10 @@ public:
 		renderObjects.push_back(&r);
 	}
 
+	void AddObject(RenderObject &r, GameObject &g) {
+		obj.insert(pair<RenderObject*, GameObject*>(&r, &g));
+	}
+
 	void SetProjMatrix(Matrix4 m) { projMatrix = m; }
 	Matrix4 GetProjMatrix() { return projMatrix; }
 
@@ -30,6 +36,6 @@ public:
 
 protected:
 	vector<RenderObject*> renderObjects;
-
+	map<RenderObject*, GameObject*> obj;
 };
 
