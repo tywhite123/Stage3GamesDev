@@ -40,8 +40,10 @@ int main() {
 	Physics physics(gameObjects);
 
 	while (w.UpdateWindow() && !Window::GetKeyboard()->KeyDown(KEYBOARD_ESCAPE)) {
-		graphics.GraphicsUpdate(w.GetTimer()->GetTimedMS());
-		physics.PhysicsUpdate(w.GetTimer()->GetTimedMS());
+		float msec = w.GetTimer()->GetTimedMS();
+		physics.PhysicsUpdate(msec);
+		graphics.GraphicsUpdate(msec);
+		
 
 	}
 
