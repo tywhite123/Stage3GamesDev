@@ -81,7 +81,7 @@
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>nclgl.lib;Graphics.lib;Physics.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>nclgl.lib;Graphics.lib;Physics.lib;Input.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

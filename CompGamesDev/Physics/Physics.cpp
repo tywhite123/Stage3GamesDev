@@ -47,7 +47,7 @@ void Physics::PhysicsUpdate(float msec)
 	b2Vec2 position = body->GetPosition();
 	float32 angle = body->GetAngle();
 
-	obj.at(body)->setXPos(position.x);
+	//obj.at(body)->setXPos(position.x);
 	obj.at(body)->setYPos(position.y);
 
 	printf("%4.2f %4.2f %4.2f\n", position.x, position.y, angle);
