@@ -1,7 +1,7 @@
 #pragma once
 
 #include <nclgl\Window.h>
-#include "..\CompGamesDev\GameObject.h"
+#include <Common\GameObject.h>
 
 class Input
 {

@@ -3,7 +3,7 @@
 #include <Box2D\Box2D.h>
 #include <map>
 #include <vector>
-#include "..\CompGamesDev\GameObject.h"
+#include <Common\GameObject.h>
 
 class Physics
 {

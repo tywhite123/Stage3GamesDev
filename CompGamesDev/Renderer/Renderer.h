@@ -3,7 +3,7 @@
 #include "RenderObject.h"
 #include <vector>
 #include <map>
-#include "..\CompGamesDev\GameObject.h"
+#include <Common\GameObject.h>
 
 using namespace std;
 

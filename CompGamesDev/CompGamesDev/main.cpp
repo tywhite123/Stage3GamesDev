@@ -1,6 +1,5 @@
 #include <nclgl\Window.h>
 #include "Renderer.h"
-#include "GameObject.h"
 #include <Renderer\Graphics.h>
 #include <Physics\Physics.h>
 #include <Input\Input.h>
@@ -46,8 +45,6 @@ int main() {
 		physics.PhysicsUpdate(msec);
 		input.InputUpdate(msec);
 		graphics.GraphicsUpdate(msec);
-		
-
 	}
 
 

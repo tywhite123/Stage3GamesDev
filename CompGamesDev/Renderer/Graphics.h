@@ -2,7 +2,6 @@
 
 #include <nclgl\Window.h>
 #include "Renderer.h"
-#include "..\CompGamesDev\GameObject.h"
 #include <map>
 
 class Graphics
