@@ -10,3 +10,8 @@ GameObject::GameObject(float x, float y)
 GameObject::~GameObject()
 {
 }
+
+void GameObject::onMessage(Message m)
+{
+
+}
