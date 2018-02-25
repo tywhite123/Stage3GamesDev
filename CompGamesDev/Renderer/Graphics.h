@@ -2,11 +2,12 @@
 
 #include <nclgl\Window.h>
 #include "Renderer.h"
+#include <map>
 
 class Graphics
 {
 public:
-	Graphics(Window &parent);
+	Graphics(Window &parent, vector<GameObject*>& objects);
 	~Graphics();
 
 	void GraphicsUpdate(float msec);
@@ -21,6 +22,11 @@ public:
 private:
 	//Window w;
 	Renderer r;
+
+	Mesh* m;
+	Shader* s;
+
+	std::map<RenderObject*, GameObject*> obj;
 
 	float msec;
 };
