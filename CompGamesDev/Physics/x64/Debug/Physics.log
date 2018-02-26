@@ -1,16 +1,1 @@
-﻿  Physics.cpp
-c:\users\tywhi\documents\uni\gamedev\compgamesdev\common\gameobject.h(19): error C2061: syntax error: identifier 'Message'
-c:\users\tywhi\documents\uni\gamedev\compgamesdev\common\gameobject.h(8): error C2011: 'GameObject': 'class' type redefinition
-  c:\users\tywhi\documents\uni\gamedev\compgamesdev\common\gameobject.h(8): note: see declaration of 'GameObject'
-c:\users\tywhi\documents\uni\gamedev\compgamesdev\physics\physics.cpp(19): error C2027: use of undefined type 'GameObject'
-  c:\users\tywhi\documents\uni\gamedev\compgamesdev\common\gameobject.h(8): note: see declaration of 'GameObject'
-c:\users\tywhi\documents\uni\gamedev\compgamesdev\physics\physics.cpp(19): error C2227: left of '->getXPos' must point to class/struct/union/generic type
-c:\users\tywhi\documents\uni\gamedev\compgamesdev\physics\physics.cpp(19): error C2227: left of '->getYPos' must point to class/struct/union/generic type
-c:\users\tywhi\documents\uni\gamedev\compgamesdev\physics\physics.cpp(19): error C2660: 'b2Vec2::Set': function does not take 1 arguments
-c:\users\tywhi\documents\uni\gamedev\compgamesdev\physics\physics.cpp(50): error C2027: use of undefined type 'GameObject'
-  c:\users\tywhi\documents\uni\gamedev\compgamesdev\common\gameobject.h(8): note: see declaration of 'GameObject'
-c:\users\tywhi\documents\uni\gamedev\compgamesdev\physics\physics.cpp(50): error C2227: left of '->setXPos' must point to class/struct/union/generic type
-c:\users\tywhi\documents\uni\gamedev\compgamesdev\physics\physics.cpp(50): error C2227: left of '->getXPos' must point to class/struct/union/generic type
-c:\users\tywhi\documents\uni\gamedev\compgamesdev\physics\physics.cpp(51): error C2027: use of undefined type 'GameObject'
-  c:\users\tywhi\documents\uni\gamedev\compgamesdev\common\gameobject.h(8): note: see declaration of 'GameObject'
-c:\users\tywhi\documents\uni\gamedev\compgamesdev\physics\physics.cpp(51): error C2227: left of '->setYPos' must point to class/struct/union/generic type
+﻿  Physics.vcxproj -> H:\GameDev\CompGamesDev\lib\Debug\Physics.lib
