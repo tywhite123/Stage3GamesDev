@@ -1,2 +1,7 @@
-﻿  GameObject.cpp
-  Common.vcxproj -> H:\GameDev\CompGamesDev\lib\Debug\Common.lib
+﻿  MessageQueue.cpp
+  Generating Code...
+  Compiling...
+  Message.cpp
+  GameObject.cpp
+  Generating Code...
+  Common.vcxproj -> C:\Users\tywhi\Documents\Uni\GameDev\CompGamesDev\lib\Debug\Common.lib
