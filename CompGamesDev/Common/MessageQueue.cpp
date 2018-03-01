@@ -12,20 +12,13 @@ MessageQueue::~MessageQueue()
 {
 }
 
-Message* MessageQueue::getMessage(GameEnums::Subsystem sys)
+int MessageQueue::getMessage(GameEnums::Subsystem sys)
 {
-	Message* m;
 	for (int i = 0; i < messageQueue.size(); ++i) {
-		m = messageQueue.at(i);
-
-		if (m) {
-			if (m->getSys() == sys) {
-				return m;
-			}
+		if (messageQueue.at(i)->getSys() == sys) {
+			return i;
 		}
 	}
-	
-	return &Message();
 }
 
 //void MessageQueue::dispatchMessages()

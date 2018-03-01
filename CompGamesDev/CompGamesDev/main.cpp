@@ -20,8 +20,9 @@ int main() {
 
 	while (w.UpdateWindow() && !Window::GetKeyboard()->KeyDown(KEYBOARD_ESCAPE)) {
 		float msec = w.GetTimer()->GetTimedMS();
-		physics.PhysicsUpdate(msec);
 		input.InputUpdate(msec);
+		physics.PhysicsUpdate(msec);
+		
 		graphics.GraphicsUpdate(msec);
 	}
 

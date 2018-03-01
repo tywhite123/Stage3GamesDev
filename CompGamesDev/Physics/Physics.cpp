@@ -7,7 +7,7 @@ Physics::Physics(std::vector<GameObject*>& objects, MessageQueue &queue) : objLi
 	b2BodyDef groundBodyDef;
 	groundBodyDef.position.Set(0.0f, -12.6f);
 
-	groundBody = world.CreateBody(&groundBodyDef);
+	b2Body* groundBody = world.CreateBody(&groundBodyDef);
 
 	b2PolygonShape groundBox;
 	groundBox.SetAsBox(50.0f, 10.0f);
@@ -17,7 +17,7 @@ Physics::Physics(std::vector<GameObject*>& objects, MessageQueue &queue) : objLi
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
 	bodyDef.position.Set(objects[0]->getXPos(), objects[0]->getYPos());
-	body = world.CreateBody(&bodyDef);
+	b2Body* body = world.CreateBody(&bodyDef);
 
 	b2PolygonShape dynamicBox;
 	dynamicBox.SetAsBox(1.0f, 1.0f);
@@ -73,7 +73,7 @@ void Physics::NewObject()
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
 	bodyDef.position.Set(o->getXPos(), o->getYPos());
-	body = world.CreateBody(&bodyDef);
+	b2Body* body = world.CreateBody(&bodyDef);
 
 	b2PolygonShape dynamicBox;
 	dynamicBox.SetAsBox(1.0f, 1.0f);
@@ -89,17 +89,28 @@ void Physics::NewObject()
 
 
 	obj.insert(std::pair<GameObject*, b2Body*>(o, body));
+
+	printf("New object");
 }
 
 void Physics::UpdateMessage()
 {
-	Message* m = mQueue->getMessage(GameEnums::Subsystem::Physics);
+	Message* m;
 	
-	if (m) {
-		if (m->getType() == GameEnums::MType::Spawn_Tri) {
-			NewObject();
-		}
+	try {
+		m = mQueue->getQueue().at(mQueue->getMessage(GameEnums::Subsystem::Physics));
+		if (m) {
+			if (m->getType() == GameEnums::MType::Spawn_Tri) {
+				NewObject();
+			}
 	}
+	}
+	catch (std::out_of_range e) {
+
+	}
+	
+	
+	
 	
 
 }

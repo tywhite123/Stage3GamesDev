@@ -12,9 +12,13 @@ public:
 		messageQueue.push_back(m);
 	}
 
-	Message* getMessage(GameEnums::Subsystem sys);
+	int getMessage(GameEnums::Subsystem sys);
 
 	void dispatchMessages();
+
+	std::vector<Message*> getQueue() {
+		return messageQueue;
+	}
 
 
 protected:

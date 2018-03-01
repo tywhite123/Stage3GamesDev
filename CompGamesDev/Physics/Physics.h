@@ -19,8 +19,7 @@ public:
 protected:
 	b2Vec2 gravity = b2Vec2(0.0, -10.0f);
 	b2World world = b2World(gravity);
-	b2Body* groundBody;
-	b2Body* body;
+	
 
 	std::map<GameObject*, b2Body*> obj;
 	MessageQueue* mQueue;
