@@ -2,8 +2,9 @@
 
 
 
-MessageQueue::MessageQueue()
+MessageQueue::MessageQueue(std::vector<GameObject*>& objects)
 {
+	this->obj = &objects;
 }
 
 
@@ -11,19 +12,35 @@ MessageQueue::~MessageQueue()
 {
 }
 
-void MessageQueue::dispatchMessages()
+Message* MessageQueue::getMessage(GameEnums::Subsystem sys)
 {
 	Message* m;
-	for (int i = 0; i < messageQueue.size(); ++i)
-	{
-		m = &messageQueue.at(i);
-		
+	for (int i = 0; i < messageQueue.size(); ++i) {
+		m = messageQueue.at(i);
+
 		if (m) {
-			m->GetTo()->onMessage(*m); 
+			if (m->getSys() == sys) {
+				return m;
+			}
 		}
-
 	}
-
-	messageQueue.clear();
-
+	
+	return &Message();
 }
+
+//void MessageQueue::dispatchMessages()
+//{
+//	Message* m;
+//	for (int i = 0; i < messageQueue.size(); ++i)
+//	{
+//		m = messageQueue.at(i);
+//		
+//		if (m) {
+//			GameEnums::Subsystem subsys = m->GetTo();
+//		}
+//
+//	}
+//
+//	messageQueue.clear();
+//
+//}

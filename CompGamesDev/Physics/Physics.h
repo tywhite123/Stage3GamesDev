@@ -4,14 +4,17 @@
 #include <map>
 #include <vector>
 #include <Common\GameObject.h>
+#include <Common\MessageQueue.h>
 
 class Physics
 {
 public:
-	Physics(std::vector<GameObject*>& objects);
+	Physics(std::vector<GameObject*>& objects, MessageQueue &queue);
 	~Physics();
 
 	void PhysicsUpdate(float msec);
+	void NewObject();
+	void UpdateMessage();
 
 protected:
 	b2Vec2 gravity = b2Vec2(0.0, -10.0f);
@@ -19,7 +22,9 @@ protected:
 	b2Body* groundBody;
 	b2Body* body;
 
-	std::map<b2Body*, GameObject*> obj;
+	std::map<GameObject*, b2Body*> obj;
+	MessageQueue* mQueue;
+	std::vector<GameObject*>* objList;
 
 	float32 timeStep = 1.0f / 60.0f;
 	int32 velocityIterations = 6;

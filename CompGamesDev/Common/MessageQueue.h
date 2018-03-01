@@ -5,17 +5,20 @@
 class MessageQueue
 {
 public:
-	MessageQueue();
+	MessageQueue(std::vector<GameObject*>& objects);
 	~MessageQueue();
 
-	void addMessage(Message m) {
+	void addMessage(Message* m) {
 		messageQueue.push_back(m);
 	}
+
+	Message* getMessage(GameEnums::Subsystem sys);
 
 	void dispatchMessages();
 
 
 protected:
-	std::vector<Message> messageQueue;
+	std::vector<GameObject*>* obj;
+	std::vector<Message*> messageQueue;
 };
 
