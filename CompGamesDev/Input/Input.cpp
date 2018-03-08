@@ -45,11 +45,5 @@ void Input::InputUpdate(float msec)
 	if (g.IsPressed(XINPUT_GAMEPAD_A)) { 
 		printf("Button A is pressed!\n");
 	}
-	/*if () {
-		eQueue->pushEvent(new Event(GameEnums::MType::Move_Right));
-	}
-	if () {
-		eQueue->pushEvent(new Event(GameEnums::MType::Move_Left));
-	}*/
 
 }
