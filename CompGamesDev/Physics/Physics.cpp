@@ -59,7 +59,7 @@ void Physics::PhysicsUpdate(float msec)
 		float32 angle = o.second->GetAngle();
 
 		o.first->setXPos(o.first->getXPos() + position.x);
-		o.first->setYPos(position.y);
+		o.first->setYPos(o.first->getYPos() + position.y);
 		
 		//printf("%4.2f %4.2f %4.2f\n", position.x, position.y, angle);
 	}

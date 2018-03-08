@@ -21,7 +21,7 @@ public:
 
 
 protected:
-	b2Vec2 gravity = b2Vec2(0.0, -10.0f);
+	b2Vec2 gravity = b2Vec2(0.0, 0.0f);
 	b2World world = b2World(gravity);
 	
 
