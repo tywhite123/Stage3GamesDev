@@ -46,4 +46,5 @@ void Input::InputUpdate(float msec)
 	if (g.IsPressed(XINPUT_GAMEPAD_DPAD_LEFT)) {
 		eQueue->pushEvent(new Event(GameEnums::MType::Move_Left));
 	}
+
 }

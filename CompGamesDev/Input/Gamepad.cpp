@@ -1,5 +1,6 @@
 #include "Gamepad.h"
 #include <stdio.h>
+#include <math.h>
 
 
 Gamepad::Gamepad()
@@ -44,6 +45,41 @@ bool Gamepad::Refresh()
 			controllerID = -1;
 			return false;
 		}
+
+		//Left stick code see - https://msdn.microsoft.com/en-us/library/windows/desktop/ee417001(v=vs.85).aspx
+		float LX = state.Gamepad.sThumbLX;
+		float LY = state.Gamepad.sThumbLY;
+
+		float mag = sqrt(LX*LX + LY*LY);
+
+		float normalisedLX = LX / mag;
+		float normalisedLY = LY / mag;
+
+		float normalisedMag = 0;
+
+		if (mag > XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE) {
+
+			if (mag > 32767) mag = 32767;
+
+			mag -= XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE;
+
+			normalisedMag = mag / (32767 - XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE);
+
+		}
+		else {
+			mag = 0.0;
+			normalisedMag = 0.0;
+		}
+
+		//Code for controller vibration
+		/*XINPUT_VIBRATION vibration;
+		ZeroMemory(&vibration, sizeof(XINPUT_VIBRATION));
+		vibration.wLeftMotorSpeed = 65535; // use any value between 0-65535 here
+		vibration.wRightMotorSpeed = 65535; // use any value between 0-65535 here
+		XInputSetState(0, &vibration);*/
+
+		printf("Left Stick LX: %f\nLeft Stick LY: %f\nMagnitude: %f\n", normalisedLX, normalisedLY, normalisedMag);
+
 		return true;
 	}
 	return false;

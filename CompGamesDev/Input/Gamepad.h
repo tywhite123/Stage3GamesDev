@@ -13,8 +13,15 @@ public:
 	bool CheckConnected();
 	bool Refresh();
 
+	float getLX() { return LX; }
+	float getLY() { return LY; }
+
 protected:
 	XINPUT_STATE state;
 	int controllerID;
+
+	float LX;
+	float LY;
+
 };
 
