@@ -108,6 +108,12 @@ void Physics::RecieveEvent()
 				if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::Move_Right) {
 					objList->at(0)->setXPos(objList->at(0)->getXPos() + 0.1f);
 				}
+				if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::Move_Up) {
+					objList->at(0)->setYPos(objList->at(0)->getYPos() + 0.1f);
+				}
+				if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::Move_Down) {
+					objList->at(0)->setYPos(objList->at(0)->getYPos() - 0.1f);
+				}
 
 				if (eQueue->getEvents().at(i)->getSubsystems().size() - 1 == j) {
 					eQueue->popEvent();

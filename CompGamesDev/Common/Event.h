@@ -8,7 +8,7 @@ namespace GameEnums {
 	};
 
 	enum MType {
-		Move_Left, Move_Right
+		Move_Left, Move_Right, Move_Up, Move_Down
 	};
 };
 

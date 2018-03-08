@@ -15,6 +15,14 @@ Event::Event(GameEnums::MType type)
 		subsystems.push_back(GameEnums::Subsystem::Physics);
 		//subsystems.push_back(GameEnums::Subsystem::Graphics);
 	}
+	if (eventType == GameEnums::MType::Move_Up) {
+		subsystems.push_back(GameEnums::Subsystem::Physics);
+		//subsystems.push_back(GameEnums::Subsystem::Graphics);
+	}
+	if (eventType == GameEnums::MType::Move_Down) {
+		subsystems.push_back(GameEnums::Subsystem::Physics);
+		//subsystems.push_back(GameEnums::Subsystem::Graphics);
+	}
 
 }
 

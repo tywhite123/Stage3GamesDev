@@ -18,11 +18,13 @@ void Input::InputUpdate(float msec)
 
 
 	if (Window::GetKeyboard()->KeyDown(KEYBOARD_W) || g.IsPressed(XINPUT_GAMEPAD_DPAD_UP)) {
-		obj->at(0)->setYPos(obj->at(0)->getYPos() + 0.1f);
+		//obj->at(0)->setYPos(obj->at(0)->getYPos() + 0.1f);
+		eQueue->pushEvent(new Event(GameEnums::MType::Move_Up));
 	}
 
 	if (Window::GetKeyboard()->KeyDown(KEYBOARD_S) || g.IsPressed(XINPUT_GAMEPAD_DPAD_DOWN)) {
-		obj->at(0)->setYPos(obj->at(0)->getYPos() - 0.1f);
+		//obj->at(0)->setYPos(obj->at(0)->getYPos() - 0.1f);
+		eQueue->pushEvent(new Event(GameEnums::MType::Move_Down));
 	}
 
 	if (Window::GetKeyboard()->KeyDown(KEYBOARD_A) || g.IsPressed(XINPUT_GAMEPAD_DPAD_LEFT)) {
