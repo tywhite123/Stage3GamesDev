@@ -1,4 +1,5 @@
-﻿  Input.cpp
+﻿  Gamepad.cpp
+h:\gamedev\compgamesdev\input\gamepad.cpp(53): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 Common.lib(Window.obj) : warning LNK4006: "public: __cdecl Window::Window(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,int,int,bool)" (??0Window@@QEAA@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HH_N@Z) already defined in nclgl.lib(Window.obj); second definition ignored
 Common.lib(Window.obj) : warning LNK4006: "public: __cdecl Window::~Window(void)" (??1Window@@QEAA@XZ) already defined in nclgl.lib(Window.obj); second definition ignored
 Common.lib(Window.obj) : warning LNK4006: "protected: void __cdecl Window::CheckMessages(struct tagMSG &)" (?CheckMessages@Window@@IEAAXAEAUtagMSG@@@Z) already defined in nclgl.lib(Window.obj); second definition ignored

@@ -61,7 +61,7 @@ void Physics::PhysicsUpdate(float msec)
 		o.first->setXPos(o.first->getXPos() + position.x);
 		o.first->setYPos(o.first->getYPos() + position.y);
 		
-		//printf("%4.2f %4.2f %4.2f\n", position.x, position.y, angle);
+		printf("%4.2f %4.2f %4.2f\n", o.first->getXPos(), o.first->getYPos(), angle);
 	}
 
 	
@@ -103,16 +103,16 @@ void Physics::RecieveEvent()
 
 			if (eQueue->getEvents().at(i)->getSubsystems().at(j) == GetSubsystem()) {
 				if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::Move_Left) {
-					objList->at(0)->setXPos(objList->at(0)->getXPos() - 0.1f);
+					objList->at(0)->setXPos(objList->at(0)->getXPos() - 0.01f);
 				}
 				if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::Move_Right) {
-					objList->at(0)->setXPos(objList->at(0)->getXPos() + 0.1f);
+					objList->at(0)->setXPos(objList->at(0)->getXPos() + 0.01f);
 				}
 				if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::Move_Up) {
-					objList->at(0)->setYPos(objList->at(0)->getYPos() + 0.1f);
+					objList->at(0)->setYPos(objList->at(0)->getYPos() + 0.01f);
 				}
 				if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::Move_Down) {
-					objList->at(0)->setYPos(objList->at(0)->getYPos() - 0.1f);
+					objList->at(0)->setYPos(objList->at(0)->getYPos() - 0.01f);
 				}
 
 				if (eQueue->getEvents().at(i)->getSubsystems().size() - 1 == j) {
