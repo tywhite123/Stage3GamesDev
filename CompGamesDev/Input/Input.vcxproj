@@ -81,7 +81,7 @@
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Lib>
-      <AdditionalDependencies>nclgl.lib; SOIL.lib; Common.lib</AdditionalDependencies>
+      <AdditionalDependencies>nclgl.lib;SOIL.lib;Common.lib;XInput.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -118,9 +118,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Controller.h" />
+    <ClInclude Include="Gamepad.h" />
     <ClInclude Include="Input.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Controller.cpp" />
+    <ClCompile Include="Gamepad.cpp" />
     <ClCompile Include="Input.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

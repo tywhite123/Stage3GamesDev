@@ -1,3 +1,2 @@
-﻿  MessageQueue.cpp
-h:\gamedev\compgamesdev\common\messagequeue.cpp(22): warning C4715: 'MessageQueue::getMessage': not all control paths return a value
+﻿  Event.cpp
   Common.vcxproj -> H:\GameDev\CompGamesDev\lib\Debug\Common.lib

@@ -2,8 +2,11 @@
 
 
 
-Physics::Physics(std::vector<GameObject*>& objects, MessageQueue &queue) : objList(&objects), mQueue(&queue)
+Physics::Physics(std::vector<GameObject*>& objects, EventQueue* eq) : objList(&objects)
 {
+
+	eQueue = eq;
+
 	b2BodyDef groundBodyDef;
 	groundBodyDef.position.Set(0.0f, -12.6f);
 
@@ -42,8 +45,7 @@ Physics::~Physics()
 
 void Physics::PhysicsUpdate(float msec)
 {
-
-	UpdateMessage();
+	RecieveEvent();
 	world.Step(timeStep, velocityIterations, positionIterations);
 
 	/*b2Vec2 position = body->GetPosition();
@@ -59,7 +61,7 @@ void Physics::PhysicsUpdate(float msec)
 		o.first->setXPos(o.first->getXPos() + position.x);
 		o.first->setYPos(position.y);
 		
-		printf("%4.2f %4.2f %4.2f\n", position.x, position.y, angle);
+		//printf("%4.2f %4.2f %4.2f\n", position.x, position.y, angle);
 	}
 
 	
@@ -93,26 +95,28 @@ void Physics::NewObject()
 	printf("New object");
 }
 
-void Physics::UpdateMessage()
+void Physics::RecieveEvent()
 {
-	Message* m;
-	
-	try {
-		m = mQueue->getQueue().at(mQueue->getMessage(GameEnums::Subsystem::Physics));
-		if (m) {
-			if (m->getType() == GameEnums::MType::Spawn_Tri) {
-				NewObject();
+	for (int i = 0; i < eQueue->getEvents().size(); ++i) {
+		//if(eQueue->getEvents().at(i)->getSubsystems())
+		for (int j = 0; j < eQueue->getEvents().at(i)->getSubsystems().size(); ++j) {
+
+			if (eQueue->getEvents().at(i)->getSubsystems().at(j) == GetSubsystem()) {
+				if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::Move_Left) {
+					objList->at(0)->setXPos(objList->at(0)->getXPos() - 0.1f);
+				}
+				if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::Move_Right) {
+					objList->at(0)->setXPos(objList->at(0)->getXPos() + 0.1f);
+				}
+
+				if (eQueue->getEvents().at(i)->getSubsystems().size() - 1 == j) {
+					eQueue->popEvent();
+					return;
+				}
 			}
-	}
-	}
-	catch (std::out_of_range e) {
 
+		}
 	}
-	
-	
-	
-	
-
 }
 
 

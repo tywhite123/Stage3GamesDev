@@ -11,7 +11,3 @@ GameObject::~GameObject()
 {
 }
 
-void GameObject::onMessage(Message m)
-{
-
-}

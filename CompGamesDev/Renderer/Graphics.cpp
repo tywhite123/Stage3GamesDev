@@ -4,7 +4,7 @@
 
 
 
-Graphics::Graphics(Window &w, vector<GameObject*>& objects, MessageQueue &queue) : r(w), objList(&objects), mQueue(&queue)
+Graphics::Graphics(Window &w, vector<GameObject*>& objects) : r(w), objList(&objects)
 {
 	m = Mesh::GenerateTriangle();
 	s = new Shader(SHADERDIR"basicVert.glsl", SHADERDIR"BasicFrag.glsl");
@@ -51,3 +51,5 @@ void Graphics::NewObject()
 	r.AddRenderObject(*o);
 	r.AddObject(*o, *objList->at(objList->size() - 1));
 }
+
+

@@ -2,19 +2,25 @@
 
 #include <nclgl\Window.h>
 #include <Common\GameObject.h>
-#include <Common\MessageQueue.h>
+#include <Common\EventQueue.h>
+#include "Controller.h"
+#include "Gamepad.h"
 
 class Input
 {
 public:
-	Input(Window &w, std::vector<GameObject*>& objects, MessageQueue &queue);
+	Input(Window &w, std::vector<GameObject*>& objects, EventQueue* eq);
 	~Input();
 
 	void InputUpdate(float msec);
 
+	GameEnums::Subsystem GetSubsystem() { return GameEnums::Subsystem::Input; }
+
 protected:
 	Window* win;
+	EventQueue* eQueue;
 	std::vector<GameObject*>* obj;
-	MessageQueue* mQueue;
+	Controller* con;
+	Gamepad g;
 };
 

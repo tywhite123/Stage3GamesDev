@@ -1,9 +1,9 @@
 #include <nclgl\Window.h>
 #include "Renderer.h"
+#include <Common\EventQueue.h>
 #include <Renderer\Graphics.h>
 #include <Physics\Physics.h>
 #include <Input\Input.h>
-#include <Common\MessageQueue.h>
 
 int main() {
 
@@ -12,11 +12,11 @@ int main() {
 	vector<GameObject*> gameObjects;
 	gameObjects.push_back(new GameObject(0.0f, 0.0f));
 
-	MessageQueue* queue = new MessageQueue(gameObjects);
+	EventQueue* queue = new EventQueue();
 
-	Graphics graphics(w, gameObjects, *queue);
-	Physics physics(gameObjects, *queue);
-	Input input(w, gameObjects, *queue);
+	Graphics graphics(w, gameObjects);
+	Physics physics(gameObjects, queue);
+	Input input(w, gameObjects, queue);
 
 	while (w.UpdateWindow() && !Window::GetKeyboard()->KeyDown(KEYBOARD_ESCAPE)) {
 		float msec = w.GetTimer()->GetTimedMS();

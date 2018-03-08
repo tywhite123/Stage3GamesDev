@@ -1,3 +1,2 @@
-﻿  MessageQueue.cpp
-h:\gamedev\compgamesdev\common\messagequeue.cpp(28): warning C4172: returning address of local variable or temporary
+﻿  Event.cpp
   Common.vcxproj -> H:\GameDev\CompGamesDev\lib\Debug\Common.lib

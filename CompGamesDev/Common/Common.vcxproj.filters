@@ -18,10 +18,10 @@
     <ClInclude Include="GameObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Message.h">
+    <ClInclude Include="Event.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MessageQueue.h">
+    <ClInclude Include="EventQueue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -29,10 +29,10 @@
     <ClCompile Include="GameObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Message.cpp">
+    <ClCompile Include="Event.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MessageQueue.cpp">
+    <ClCompile Include="EventQueue.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,6 +1,4 @@
 #pragma once
-
-#include <Common\MessageQueue.h>
 #include <nclgl\Window.h>
 #include "Renderer.h"
 #include <map>
@@ -8,12 +6,12 @@
 class Graphics
 {
 public:
-	Graphics(Window &parent, vector<GameObject*>& objects, MessageQueue &queue);
+	Graphics(Window &parent, vector<GameObject*>& objects);
 	~Graphics();
 
 	void GraphicsUpdate(float msec);
 	void NewObject();
-	void UpdateMessage();
+
 
 	//bool CheckEsc() {
 		//Window::GetKeyboard()->KeyDown(KEYBOARD_ESCAPE);
@@ -28,8 +26,6 @@ private:
 
 	Mesh* m;
 	Shader* s;
-
-	MessageQueue* mQueue;
 
 	std::map<RenderObject*, GameObject*> obj;
 	std::vector<GameObject*>* objList;
