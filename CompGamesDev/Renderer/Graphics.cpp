@@ -4,12 +4,12 @@
 
 
 
-Graphics::Graphics(Window &w, vector<GameObject*>& objects) : r(w), objList(&objects)
+Graphics::Graphics(Window &w, vector<GameObject*>& objects, EventQueue* eq) : r(w), objList(&objects)
 {
 	m = Mesh::GenerateTriangle();
 	s = new Shader(SHADERDIR"basicVert.glsl", SHADERDIR"BasicFrag.glsl");
 
-	
+	eQueue = eq;
 
 	if (!s->LinkProgram()) {
 		return;
@@ -40,6 +40,7 @@ Graphics::~Graphics()
 
 void Graphics::GraphicsUpdate(float msec)
 {
+	RecieveEvent();
 	r.UpdateScene(msec);
 	r.RenderScene();
 }
@@ -50,6 +51,36 @@ void Graphics::NewObject()
 	o->SetModelMatrix(Matrix4::Translation(Vector3(objList->at(objList->size()-1)->getXPos(), objList->at(objList->size() - 1)->getYPos(), -5)) * Matrix4::Scale(Vector3(1, 1, 1)));
 	r.AddRenderObject(*o);
 	r.AddObject(*o, *objList->at(objList->size() - 1));
+}
+
+void Graphics::RecieveEvent()
+{
+	for (int i = 0; i < eQueue->getEvents().size(); ++i) {
+		//if(eQueue->getEvents().at(i)->getSubsystems())
+		for (int j = 0; j < eQueue->getEvents().at(i)->getSubsystems().size(); ++j) {
+
+			if (eQueue->getEvents().at(i)->getSubsystems().at(j) == GetSubsystem()) {
+				if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::Move_Left) {
+					r.getRenderObj().at(0)->SetModelMatrix(r.getRenderObj().at(0)->GetModelMatrix() * Matrix4::Rotation(90.0f, Vector3(0.0f, 0.0f, 1.0f)));
+				}
+				if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::Move_Right) {
+					r.getRenderObj().at(0)->SetModelMatrix(r.getRenderObj().at(0)->GetModelMatrix() * Matrix4::Rotation(270.0f, Vector3(0.0f, 0.0f, 1.0f)));
+				}
+				if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::Move_Up) {
+					r.getRenderObj().at(0)->SetModelMatrix(r.getRenderObj().at(0)->GetModelMatrix() * Matrix4::Rotation(0.0f, Vector3(0.0f, 0.0f, 1.0f)));
+				}
+				if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::Move_Down) {
+					r.getRenderObj().at(0)->SetModelMatrix(r.getRenderObj().at(0)->GetModelMatrix() * Matrix4::Rotation(180.0f, Vector3(0.0f, 0.0f, 1.0f)));
+				}
+
+				if (eQueue->getEvents().at(i)->getSubsystems().size() - 1 == j) {
+					eQueue->popEvent();
+					return;
+				}
+			}
+
+		}
+	}
 }
 
 

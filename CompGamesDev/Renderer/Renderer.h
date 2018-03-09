@@ -28,6 +28,14 @@ public:
 		obj.insert(pair<RenderObject*, GameObject*>(&r, &g));
 	}
 
+	map<RenderObject*, GameObject*> getObjects() {
+		return obj;
+	}
+
+	vector<RenderObject*> getRenderObj() {
+		return renderObjects;
+	}
+
 	void SetProjMatrix(Matrix4 m) { projMatrix = m; }
 	Matrix4 GetProjMatrix() { return projMatrix; }
 

@@ -14,7 +14,7 @@ int main() {
 
 	EventQueue* queue = new EventQueue();
 
-	Graphics graphics(w, gameObjects);
+	Graphics graphics(w, gameObjects, queue);
 	Physics physics(gameObjects, queue);
 	Input input(w, gameObjects, queue);
 

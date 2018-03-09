@@ -7,8 +7,9 @@ namespace GameEnums {
 		Physics, Graphics, Input, Audio, IO
 	};
 
+	//Replace face and move into the same thing
 	enum MType {
-		Move_Left, Move_Right, Move_Up, Move_Down
+		Move_Left, Move_Right, Move_Up, Move_Down, Face_Up, Face_Left, Face_Right, Face_Down
 	};
 };
 

@@ -40,8 +40,6 @@ void Input::InputUpdate(float msec)
 	if (Window::GetKeyboard()->KeyDown(KEYBOARD_T)) {
 	}
 
-	
-
 	if (g.IsPressed(XINPUT_GAMEPAD_A)) { 
 		printf("Button A is pressed!\n");
 	}
