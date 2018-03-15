@@ -36,6 +36,27 @@ Physics::Physics(std::vector<GameObject*>& objects, EventQueue* eq) : objList(&o
 
 	obj.insert(std::pair<GameObject*, b2Body*>(objects[0], body));
 
+	GameObject* o = new GameObject(0.0f, 0.0f);
+	objList->push_back(o);
+	b2BodyDef bodyDef2;
+	bodyDef2.type = b2_dynamicBody;
+	bodyDef2.position.Set(o->getXPos(), o->getYPos());
+	b2Body* body2 = world.CreateBody(&bodyDef);
+
+	b2PolygonShape dynamicBox2;
+	dynamicBox2.SetAsBox(1.0f, 1.0f);
+
+	b2FixtureDef fixtureDef2;
+	fixtureDef2.shape = &dynamicBox;
+
+	fixtureDef2.density = 1.0f;
+
+	fixtureDef2.friction = 0.3f;
+
+	body2->CreateFixture(&fixtureDef2);
+
+	obj.insert(std::pair<GameObject*, b2Body*>(objList->at(objList->size() - 1), body));
+
 }
 
 
@@ -70,7 +91,7 @@ void Physics::PhysicsUpdate(float msec)
 
 void Physics::NewObject()
 {
-	GameObject* o = new GameObject(0.0f, 0.0f);
+	GameObject* o = new GameObject(rand() % 3, rand() % 3);
 	objList->push_back(o);
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;

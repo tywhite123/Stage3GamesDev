@@ -30,10 +30,20 @@ Graphics::Graphics(Window &w, vector<GameObject*>& objects, EventQueue* eq) : r(
 	o->SetModelMatrix(Matrix4::Translation(Vector3(0, 0, -50))* Matrix4::Scale(Vector3(20, 20, 20)));
 	r.AddRenderObject(*o);
 
-	//r.SetProjMatrix(Matrix4::Orthographic(-10, 10, 10, 10, 10, 10));
+	o = new RenderObject(m, s);
+	o->SetModelMatrix(Matrix4::Translation(Vector3(objList->at(objList->size() - 1)->getXPos(), objList->at(objList->size() - 1)->getYPos(), -5)) * Matrix4::Scale(Vector3(0.5f, 0.5f, 0.5f)));
+	r.AddRenderObject(*o);
+	r.AddObject(*o, *objList->at(objList->size() - 1));
+
+	
 	r.SetProjMatrix(Matrix4::Perspective(1, 1000, 1920 / 1080, 45.0f));
-	//r.SetProjMatrix(Matrix4::Orthographic(1, 1000, 10, -20, 10, -20));
-	//r.SetViewMatrix(Matrix4::BuildViewMatrix(Vector3(0, 0, 5), Vector3(0, 0, -10)));
+	
+	
+	
+	
+	//r.SetProjMatrix(Matrix4::Orthographic(1, 1000, 10, -20, 10, -20));
+	//r.SetProjMatrix(Matrix4::Orthographic(-10, 10, 10, 10, 10, 10));
+	r.SetViewMatrix(Matrix4::BuildViewMatrix(Vector3(0, 0, 5), Vector3(0, 0, -10)));
 
 
 	
