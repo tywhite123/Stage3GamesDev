@@ -30,7 +30,7 @@ Physics::Physics(std::vector<GameObject*>& objects, EventQueue* eq) : objList(&o
 	b2Body* body = world.CreateBody(&bodyDef);
 
 	b2PolygonShape dynamicBox;
-	dynamicBox.SetAsBox(0.125f, 0.125f);
+	dynamicBox.SetAsBox(1.0f, 1.0f);
 
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = &dynamicBox;
