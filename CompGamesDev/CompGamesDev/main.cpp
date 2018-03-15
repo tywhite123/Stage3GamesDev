@@ -28,5 +28,7 @@ int main() {
 
 
 
+	delete queue, gameObjects;
+
 	return 0;
 }
