@@ -17,6 +17,8 @@ public:
 
 	void RecieveEvent();
 
+
+
 	GameEnums::Subsystem GetSubsystem() { return GameEnums::Subsystem::Physics; }
 
 
@@ -24,6 +26,7 @@ protected:
 	b2Vec2 gravity = b2Vec2(0.0, 0.0f);
 	b2World world = b2World(gravity);
 	
+	b2ContactListener contactListener;
 
 	std::map<GameObject*, b2Body*> obj;
 	std::vector<GameObject*>* objList;

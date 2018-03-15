@@ -7,6 +7,9 @@ Physics::Physics(std::vector<GameObject*>& objects, EventQueue* eq) : objList(&o
 
 	eQueue = eq;
 
+
+	world.SetContactListener(&contactListener);
+
 	b2BodyDef groundBodyDef;
 	groundBodyDef.position.Set(0.0f, -12.6f);
 
