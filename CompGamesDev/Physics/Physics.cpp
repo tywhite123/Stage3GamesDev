@@ -58,8 +58,8 @@ void Physics::PhysicsUpdate(float msec)
 		b2Vec2 position = o.second->GetPosition();
 		float32 angle = o.second->GetAngle();
 
-		o.first->setXPos(o.first->getXPos() + position.x);
-		o.first->setYPos(o.first->getYPos() + position.y);
+		o.first->setXPos(o.first->getXPos()/* + position.x*/);
+		o.first->setYPos(o.first->getYPos()/* + position.y*/);
 		
 		printf("%4.2f %4.2f %4.2f\n", o.first->getXPos(), o.first->getYPos(), angle);
 	}
@@ -70,7 +70,7 @@ void Physics::PhysicsUpdate(float msec)
 
 void Physics::NewObject()
 {
-	GameObject* o = new GameObject(0.0f, 4.0f);
+	GameObject* o = new GameObject(0.0f, 0.0f);
 	objList->push_back(o);
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
@@ -89,8 +89,7 @@ void Physics::NewObject()
 
 	body->CreateFixture(&fixtureDef);
 
-
-	obj.insert(std::pair<GameObject*, b2Body*>(o, body));
+	obj.insert(std::pair<GameObject*, b2Body*>(objList->at(objList->size()-1), body));
 
 	printf("New object");
 }
@@ -113,6 +112,9 @@ void Physics::RecieveEvent()
 				}
 				if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::Move_Down) {
 					objList->at(0)->setYPos(objList->at(0)->getYPos() - 0.01f);
+				}
+				if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::New_Obj) {
+					NewObject();
 				}
 
 				if (eQueue->getEvents().at(i)->getSubsystems().size() - 1 == j) {

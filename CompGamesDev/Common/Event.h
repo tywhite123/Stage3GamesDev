@@ -9,7 +9,7 @@ namespace GameEnums {
 
 	//Replace face and move into the same thing
 	enum MType {
-		Move_Left, Move_Right, Move_Up, Move_Down, Face_Up, Face_Left, Face_Right, Face_Down
+		Move_Left, Move_Right, Move_Up, Move_Down, New_Obj
 	};
 };
 

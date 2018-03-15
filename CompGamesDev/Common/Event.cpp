@@ -23,22 +23,10 @@ Event::Event(GameEnums::MType type)
 		subsystems.push_back(GameEnums::Subsystem::Physics);
 		subsystems.push_back(GameEnums::Subsystem::Graphics);
 	}
-	/*if (eventType == GameEnums::MType::Face_Down) {
-		//subsystems.push_back(GameEnums::Subsystem::Physics);
+	if (eventType == GameEnums::MType::New_Obj) {
+		subsystems.push_back(GameEnums::Subsystem::Physics);
 		subsystems.push_back(GameEnums::Subsystem::Graphics);
 	}
-	if (eventType == GameEnums::MType::Face_Left) {
-		//subsystems.push_back(GameEnums::Subsystem::Physics);
-		subsystems.push_back(GameEnums::Subsystem::Graphics);
-	}
-	if (eventType == GameEnums::MType::Face_Right) {
-		//subsystems.push_back(GameEnums::Subsystem::Physics);
-		subsystems.push_back(GameEnums::Subsystem::Graphics);
-	}
-	if (eventType == GameEnums::MType::Move_Up) {
-		//subsystems.push_back(GameEnums::Subsystem::Physics);
-		subsystems.push_back(GameEnums::Subsystem::Graphics);
-	}*/
 
 }
 

@@ -14,7 +14,11 @@ public:
 	float getYPos() { return objectPos.y; }
 	void setYPos(float y) { objectPos.y = y; }
 
+	float getRotation() { return rotation; }
+	void setRotation(float r) { rotation = r; }
+
 protected:
 	Vector2 objectPos;
+	float rotation;
 };
 

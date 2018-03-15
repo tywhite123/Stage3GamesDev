@@ -47,8 +47,8 @@ bool Gamepad::Refresh()
 		}
 
 		//Left stick code see - https://msdn.microsoft.com/en-us/library/windows/desktop/ee417001(v=vs.85).aspx
-		float LX = state.Gamepad.sThumbLX;
-		float LY = state.Gamepad.sThumbLY;
+		LX = state.Gamepad.sThumbLX;
+		LY = state.Gamepad.sThumbLY;
 
 		float mag = sqrt(LX*LX + LY*LY);
 
@@ -78,7 +78,10 @@ bool Gamepad::Refresh()
 		vibration.wRightMotorSpeed = 65535; // use any value between 0-65535 here
 		XInputSetState(0, &vibration);*/
 
-		//printf("Left Stick LX: %f\nLeft Stick LY: %f\nMagnitude: %f\n", normalisedLX, normalisedLY, normalisedMag);
+		printf("Left Stick LX: %f\nLeft Stick LY: %f\nMagnitude: %f\n", normalisedLX, normalisedLY, normalisedMag);
+		printf("Left Stick LX: %f\nLeft Stick LY: %f\nMagnitude: %f\n", LX, LY, mag);
+
+		
 
 		return true;
 	}
