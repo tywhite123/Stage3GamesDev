@@ -11,5 +11,5 @@ in Vertex	{
 out vec4 fragColour;
 
 void main(void)	{	
-	fragColour = vec4(0.3,1.0,0.7,1.0);
+	fragColour = IN.colour;
 }

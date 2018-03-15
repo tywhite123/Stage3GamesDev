@@ -26,6 +26,10 @@ Graphics::Graphics(Window &w, vector<GameObject*>& objects, EventQueue* eq) : r(
 
 	r.AddObject(*o, *objects[0]);
 
+	o = new RenderObject(Mesh::GenerateQuad(), s);
+	o->SetModelMatrix(Matrix4::Translation(Vector3(0, 0, -50))* Matrix4::Scale(Vector3(20, 20, 20)));
+	r.AddRenderObject(*o);
+
 	//r.SetProjMatrix(Matrix4::Orthographic(-10, 10, 10, 10, 10, 10));
 	r.SetProjMatrix(Matrix4::Perspective(1, 1000, 1920 / 1080, 45.0f));
 	//r.SetProjMatrix(Matrix4::Orthographic(1, 1000, 10, -20, 10, -20));
