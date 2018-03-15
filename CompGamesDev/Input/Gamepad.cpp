@@ -78,8 +78,8 @@ bool Gamepad::Refresh()
 		vibration.wRightMotorSpeed = 65535; // use any value between 0-65535 here
 		XInputSetState(0, &vibration);*/
 
-		printf("Left Stick LX: %f\nLeft Stick LY: %f\nMagnitude: %f\n", normalisedLX, normalisedLY, normalisedMag);
-		printf("Left Stick LX: %f\nLeft Stick LY: %f\nMagnitude: %f\n", LX, LY, mag);
+		//printf("Left Stick LX: %f\nLeft Stick LY: %f\nMagnitude: %f\n", normalisedLX, normalisedLY, normalisedMag);
+		//printf("Left Stick LX: %f\nLeft Stick LY: %f\nMagnitude: %f\n", LX, LY, mag);
 
 		
 

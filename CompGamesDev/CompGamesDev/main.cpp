@@ -14,8 +14,8 @@ int main() {
 
 	EventQueue* queue = new EventQueue();
 
-	Graphics graphics(w, gameObjects, queue);
 	Physics physics(gameObjects, queue);
+	Graphics graphics(w, gameObjects, queue);
 	Input input(w, gameObjects, queue);
 
 	while (w.UpdateWindow() && !Window::GetKeyboard()->KeyDown(KEYBOARD_ESCAPE)) {

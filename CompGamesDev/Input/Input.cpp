@@ -36,6 +36,9 @@ void Input::InputUpdate(float msec)
 		//obj->at(0)->setXPos(obj->at(0)->getXPos() + 0.1f);
 		eQueue->pushEvent(new Event(GameEnums::MType::Move_Right));
 	}
+	else {
+		eQueue->pushEvent(new Event(GameEnums::MType::Rest));
+	}
 
 	if (Window::GetKeyboard()->KeyDown(KEYBOARD_T)) {
 	}

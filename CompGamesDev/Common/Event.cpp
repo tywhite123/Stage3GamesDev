@@ -27,6 +27,9 @@ Event::Event(GameEnums::MType type)
 		subsystems.push_back(GameEnums::Subsystem::Physics);
 		subsystems.push_back(GameEnums::Subsystem::Graphics);
 	}
+	if (eventType == GameEnums::MType::Rest) {
+		subsystems.push_back(GameEnums::Subsystem::Physics);
+	}
 
 }
 

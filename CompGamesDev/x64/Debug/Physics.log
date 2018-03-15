@@ -1,3 +1,3 @@
 ﻿  Physics.cpp
-h:\gamedev\compgamesdev\physics\physics.cpp(97): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+h:\gamedev\compgamesdev\physics\physics.cpp(118): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Physics.vcxproj -> H:\GameDev\CompGamesDev\lib\Debug\Physics.lib
