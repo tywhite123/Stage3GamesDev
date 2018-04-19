@@ -30,7 +30,7 @@ Physics::Physics(std::vector<GameObject*>& objects, EventQueue* eq) : objList(&o
 	b2Body* body = world.CreateBody(&bodyDef);
 
 	b2PolygonShape dynamicBox;
-	dynamicBox.SetAsBox(1.0f, 1.0f);
+	dynamicBox.SetAsBox(0.1f, 0.1f);
 
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = &dynamicBox;
@@ -53,10 +53,10 @@ Physics::Physics(std::vector<GameObject*>& objects, EventQueue* eq) : objList(&o
 	b2BodyDef bodyDef2;
 	bodyDef2.type = b2_dynamicBody;
 	bodyDef2.position.Set(o->getXPos(), o->getYPos());
-	b2Body* body2 = world.CreateBody(&bodyDef);
+	b2Body* body2 = world.CreateBody(&bodyDef2);
 
 	b2PolygonShape dynamicBox2;
-	dynamicBox2.SetAsBox(0.25f, 0.25f);
+	dynamicBox2.SetAsBox(0.1f, 0.1f);
 
 	b2FixtureDef fixtureDef2;
 	fixtureDef2.shape = &dynamicBox;
@@ -100,11 +100,13 @@ void Physics::PhysicsUpdate(float msec)
 			printf("%4.2f, %4.2f\n", pos.x, pos.y);
 		}*/
 		
-		//printf("%4.2f %4.2f %4.2f\n", o.first->getXPos(), o.first->getYPos(), angle);
+		printf("%4.2f %4.2f %4.2f\n", o.first->getXPos(), o.first->getYPos(), angle);
 	}
 
 	for (b2Contact* contact = world.GetContactList(); contact; contact = contact->GetNext()) {
-		printf("Contact");
+		objList->at(1)->setXPos(contact->GetFixtureB()->GetBody()->GetPosition().x);
+		objList->at(1)->setYPos(contact->GetFixtureB()->GetBody()->GetPosition().y);
+		eQueue->pushEvent(new Event(GameEnums::MType::Update_Pos_AI));
 	}
 
 	
@@ -148,40 +150,40 @@ void Physics::RecieveEvent()
 			if (eQueue->getEvents().at(i)->getSubsystems().at(j) == GetSubsystem()) {
 				if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::Move_Left) {
 					//objList->at(0)->setXPos(objList->at(0)->getXPos() - 0.01f);
-					b2Vec2 vel = obj.at(objList->at(i))->GetLinearVelocity();
+					b2Vec2 vel = obj.at(objList->at(0))->GetLinearVelocity();
 					vel.x = -0.5f;
 					vel.y = 0.0f;
-					obj.at(objList->at(i))->SetLinearVelocity(vel);
+					obj.at(objList->at(0))->SetLinearVelocity(vel);
 				}
 				if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::Move_Right) {
 					///objList->at(0)->setXPos(objList->at(0)->getXPos() + 0.01f);
-					b2Vec2 vel = obj.at(objList->at(i))->GetLinearVelocity();
+					b2Vec2 vel = obj.at(objList->at(0))->GetLinearVelocity();
 					vel.x = 0.5f;
 					vel.y = 0.0f;
-					obj.at(objList->at(i))->SetLinearVelocity(vel);
+					obj.at(objList->at(0))->SetLinearVelocity(vel);
 				}
 				if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::Move_Up) {
 					//objList->at(0)->setYPos(objList->at(0)->getYPos() + 0.01f);
-					b2Vec2 vel = obj.at(objList->at(i))->GetLinearVelocity();
+					b2Vec2 vel = obj.at(objList->at(0))->GetLinearVelocity();
 					vel.x = 0.0f;
 					vel.y = 0.5f;
-					obj.at(objList->at(i))->SetLinearVelocity(vel);
+					obj.at(objList->at(0))->SetLinearVelocity(vel);
 				}
 				if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::Move_Down) {
 					//objList->at(0)->setYPos(objList->at(0)->getYPos() - 0.01f);
-					b2Vec2 vel = obj.at(objList->at(i))->GetLinearVelocity();
+					b2Vec2 vel = obj.at(objList->at(0))->GetLinearVelocity();
 					vel.x = 0.0f;
 					vel.y = -0.5f;
-					obj.at(objList->at(i))->SetLinearVelocity(vel);
+					obj.at(objList->at(0))->SetLinearVelocity(vel);
 				}
 				if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::New_Obj) {
 					NewObject();
 				}
 				if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::Rest) {
-					b2Vec2 vel = obj.at(objList->at(i))->GetLinearVelocity();
+					b2Vec2 vel = obj.at(objList->at(0))->GetLinearVelocity();
 					vel.x = 0.0f;
 					vel.y = 0.0f;
-					obj.at(objList->at(i))->SetLinearVelocity(vel);
+					obj.at(objList->at(0))->SetLinearVelocity(vel);
 				}
 
 

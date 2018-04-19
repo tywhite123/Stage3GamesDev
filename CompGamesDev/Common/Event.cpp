@@ -30,6 +30,9 @@ Event::Event(GameEnums::MType type)
 	if (eventType == GameEnums::MType::Rest) {
 		subsystems.push_back(GameEnums::Subsystem::Physics);
 	}
+	if (eventType == GameEnums::MType::Update_Pos_AI) {
+		subsystems.push_back(GameEnums::Subsystem::Graphics);
+	}
 
 }
 

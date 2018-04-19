@@ -95,6 +95,9 @@ void Graphics::RecieveEvent()
 				if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::New_Obj) {
 					NewObject();
 				}
+				if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::Update_Pos_AI) {
+					r.getRenderObj().at(1)->SetModelMatrix(Matrix4::Translation(Vector3(objList->at(1)->getXPos(), objList->at(1)->getYPos(), -10.0f)));
+				}
 
 				if (eQueue->getEvents().at(i)->getSubsystems().size() - 1 == j) {
 					eQueue->popEvent();
