@@ -9,6 +9,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Game", "CompGamesDev\CompGa
 	ProjectSection(ProjectDependencies) = postProject
 		{98D6B51B-CB0A-4389-ADC6-24082B967C3F} = {98D6B51B-CB0A-4389-ADC6-24082B967C3F}
 		{0A463758-EE25-43BF-A5A8-492FB9426807} = {0A463758-EE25-43BF-A5A8-492FB9426807}
+		{3C38E38A-826E-47A1-8B8A-F47748A12459} = {3C38E38A-826E-47A1-8B8A-F47748A12459}
 		{77B6BDD5-3939-4448-8A2F-B4EE7D72B4DD} = {77B6BDD5-3939-4448-8A2F-B4EE7D72B4DD}
 		{F3D851E3-31A1-4998-8126-BE7B315E30A3} = {F3D851E3-31A1-4998-8126-BE7B315E30A3}
 	EndProjectSection
@@ -40,6 +41,21 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Input", "Input\Input.vcxpro
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Common", "Common\Common.vcxproj", "{470A8AF1-6D57-43B8-AE13-8B853C42A76D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FMOD", "FMOD", "{C2E4A9A0-F902-4068-BAB2-592A3ACB3A32}"
+	ProjectSection(SolutionItems) = preProject
+		..\FMOD\inc\fmod.cs = ..\FMOD\inc\fmod.cs
+		..\FMOD\inc\fmod.h = ..\FMOD\inc\fmod.h
+		..\FMOD\inc\fmod.hpp = ..\FMOD\inc\fmod.hpp
+		..\FMOD\inc\fmod_codec.h = ..\FMOD\inc\fmod_codec.h
+		..\FMOD\inc\fmod_common.h = ..\FMOD\inc\fmod_common.h
+		..\FMOD\inc\fmod_dsp.cs = ..\FMOD\inc\fmod_dsp.cs
+		..\FMOD\inc\fmod_dsp.h = ..\FMOD\inc\fmod_dsp.h
+		..\FMOD\inc\fmod_dsp_effects.h = ..\FMOD\inc\fmod_dsp_effects.h
+		..\FMOD\inc\fmod_errors.cs = ..\FMOD\inc\fmod_errors.cs
+		..\FMOD\inc\fmod_errors.h = ..\FMOD\inc\fmod_errors.h
+		..\FMOD\inc\fmod_output.h = ..\FMOD\inc\fmod_output.h
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -126,6 +142,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{98D6B51B-CB0A-4389-ADC6-24082B967C3F} = {BEBF0228-E3BE-4804-A863-FD9A671E703E}
 		{A434E80C-1049-10BE-D9CA-B31D459E0CEF} = {BEBF0228-E3BE-4804-A863-FD9A671E703E}
+		{C2E4A9A0-F902-4068-BAB2-592A3ACB3A32} = {BEBF0228-E3BE-4804-A863-FD9A671E703E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0AFC085E-0EBC-40C2-B7F2-83FA3A6B8ECC}

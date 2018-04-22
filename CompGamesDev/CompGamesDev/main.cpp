@@ -4,6 +4,8 @@
 #include <Renderer\Graphics.h>
 #include <Physics\Physics.h>
 #include <Input\Input.h>
+#include <Audio\Audio.h>
+
 
 int main() {
 
@@ -17,6 +19,7 @@ int main() {
 	Physics physics(gameObjects, queue);
 	Graphics graphics(w, gameObjects, queue);
 	Input input(w, gameObjects, queue);
+	Audio audio(queue);
 
 	while (w.UpdateWindow() && !Window::GetKeyboard()->KeyDown(KEYBOARD_ESCAPE)) {
 		float msec = w.GetTimer()->GetTimedMS();
@@ -24,6 +27,8 @@ int main() {
 		physics.PhysicsUpdate(msec);
 		
 		graphics.GraphicsUpdate(msec);
+
+		audio.AudioUpdate(msec);
 	}
 
 

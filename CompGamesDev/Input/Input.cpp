@@ -40,10 +40,8 @@ void Input::InputUpdate(float msec)
 		eQueue->pushEvent(new Event(GameEnums::MType::Rest));
 	}
 
-	if (Window::GetKeyboard()->KeyDown(KEYBOARD_T)) {
-	}
 
-	if (g.IsPressed(XINPUT_GAMEPAD_A)) { 
+	if (g.IsPressed(XINPUT_GAMEPAD_A) || Window::GetKeyboard()->KeyDown(KEYBOARD_T)) {
 		printf("Button A is pressed!\n");
 		eQueue->pushEvent(new Event(GameEnums::MType::New_Obj));
 	}
