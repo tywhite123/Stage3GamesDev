@@ -72,11 +72,11 @@ bool Gamepad::Refresh()
 		}
 
 		//Code for controller vibration
-		/*XINPUT_VIBRATION vibration;
-		ZeroMemory(&vibration, sizeof(XINPUT_VIBRATION));
-		vibration.wLeftMotorSpeed = 65535; // use any value between 0-65535 here
-		vibration.wRightMotorSpeed = 65535; // use any value between 0-65535 here
-		XInputSetState(0, &vibration);*/
+		//XINPUT_VIBRATION vibration;
+		//ZeroMemory(&vibration, sizeof(XINPUT_VIBRATION));
+		//vibration.wLeftMotorSpeed = 65535; // use any value between 0-65535 here
+		//vibration.wRightMotorSpeed = 65535; // use any value between 0-65535 here
+		//XInputSetState(0, &vibration);
 
 		//printf("Left Stick LX: %f\nLeft Stick LY: %f\nMagnitude: %f\n", normalisedLX, normalisedLY, normalisedMag);
 		//printf("Left Stick LX: %f\nLeft Stick LY: %f\nMagnitude: %f\n", LX, LY, mag);
@@ -86,4 +86,14 @@ bool Gamepad::Refresh()
 		return true;
 	}
 	return false;
+}
+
+void Gamepad::vibrate()
+{
+	XINPUT_VIBRATION vibration;
+	ZeroMemory(&vibration, sizeof(XINPUT_VIBRATION));
+	vibration.wLeftMotorSpeed = 65535; // use any value between 0-65535 here
+	vibration.wRightMotorSpeed = 65535; // use any value between 0-65535 here
+	XInputSetState(0, &vibration);
+
 }

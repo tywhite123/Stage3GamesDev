@@ -34,6 +34,9 @@ private:
 	std::vector<GameObject*>* objList;
 	EventQueue* eQueue;
 
+	bool pushed = false;
+	bool tex;
+
 	float msec;
 };
 

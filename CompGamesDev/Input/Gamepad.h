@@ -13,6 +13,8 @@ public:
 	bool CheckConnected();
 	bool Refresh();
 
+	void vibrate();
+
 	float getLX() { return LX; }
 	float getLY() { return LY; }
 

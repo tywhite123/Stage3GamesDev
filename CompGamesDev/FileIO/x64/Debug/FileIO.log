@@ -1,1 +1,8 @@
-﻿
+﻿  GameLoader.cpp
+  Generating Code...
+  Compiling...
+  GameSaver.cpp
+  FileReader.cpp
+h:\gamedev\compgamesdev\fileio\filereader.h(4): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Generating Code...
+  FileIO.vcxproj -> H:\GameDev\CompGamesDev\lib\Debug\FileIO.lib

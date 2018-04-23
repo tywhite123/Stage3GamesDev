@@ -1,4 +1,5 @@
 ﻿  Graphics.cpp
+h:\gamedev\compgamesdev\renderer\graphics.cpp(117): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 Common.lib(Window.obj) : warning LNK4006: "public: __cdecl Window::Window(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,int,int,bool)" (??0Window@@QEAA@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HH_N@Z) already defined in nclgl.lib(Window.obj); second definition ignored
 Common.lib(Window.obj) : warning LNK4006: "public: __cdecl Window::~Window(void)" (??1Window@@QEAA@XZ) already defined in nclgl.lib(Window.obj); second definition ignored
 Common.lib(Window.obj) : warning LNK4006: "protected: void __cdecl Window::CheckMessages(struct tagMSG &)" (?CheckMessages@Window@@IEAAXAEAUtagMSG@@@Z) already defined in nclgl.lib(Window.obj); second definition ignored
@@ -92,6 +93,7 @@ Common.lib(Mesh.obj) : warning LNK4006: "protected: void __cdecl Mesh::BufferDat
 Common.lib(Mesh.obj) : warning LNK4006: "public: virtual void __cdecl Mesh::Draw(void)" (?Draw@Mesh@@UEAAXXZ) already defined in nclgl.lib(Mesh.obj); second definition ignored
 Common.lib(Mesh.obj) : warning LNK4006: "public: static class Mesh * __cdecl Mesh::GenerateQuad(void)" (?GenerateQuad@Mesh@@SAPEAV1@XZ) already defined in nclgl.lib(Mesh.obj); second definition ignored
 Common.lib(Mesh.obj) : warning LNK4006: "public: static class Mesh * __cdecl Mesh::GenerateSphere(void)" (?GenerateSphere@Mesh@@SAPEAV1@XZ) already defined in nclgl.lib(Mesh.obj); second definition ignored
+Common.lib(Mesh.obj) : warning LNK4006: "public: static class Mesh * __cdecl Mesh::GenerateSquare(class Vector4)" (?GenerateSquare@Mesh@@SAPEAV1@VVector4@@@Z) already defined in nclgl.lib(Mesh.obj); second definition ignored
 Common.lib(Mesh.obj) : warning LNK4006: "public: static class Mesh * __cdecl Mesh::GenerateTriangle(void)" (?GenerateTriangle@Mesh@@SAPEAV1@XZ) already defined in nclgl.lib(Mesh.obj); second definition ignored
 Common.lib(Mesh.obj) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
 Common.lib(Matrix4.obj) : warning LNK4006: "public: __cdecl Matrix4::Matrix4(float * const)" (??0Matrix4@@QEAA@QEAM@Z) already defined in nclgl.lib(Matrix4.obj); second definition ignored

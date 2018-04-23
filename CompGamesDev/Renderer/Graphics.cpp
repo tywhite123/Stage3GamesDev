@@ -6,34 +6,77 @@
 
 Graphics::Graphics(Window &w, vector<GameObject*>& objects, EventQueue* eq) : r(w), objList(&objects)
 {
-	m = Mesh::GenerateTriangle();
-	s = new Shader(SHADERDIR"basicVert.glsl", SHADERDIR"BasicFrag.glsl");
+	/*m = Mesh::GenerateSquare(Vector4(1.0f, 0.0f, 0.0f, 1.0f));
+	
+
+	m->SetTexture(SOIL_load_OGL_texture("..\\TestLevel\\goomba.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));
+
+	if (!m->GetTexture()) {
+		return;
+	}*/
 
 	eQueue = eq;
+	
+	
 
-	if (!s->LinkProgram()) {
-		return;
+	for (auto ob : objects) {
+		if(ob->getType() == ObjectType::Map || ob->getType() == ObjectType::Wall)
+			s = new Shader(SHADERDIR"basicVert.glsl", SHADERDIR"BasicFrag.glsl");
+
+		if (ob->getType() == ObjectType::Player || ob->getType() == ObjectType::Enemy || ob->getType() == ObjectType::Door)
+			s = new Shader(SHADERDIR"basicVert.glsl", SHADERDIR"TexturedFragment.glsl");
+	
+		if (!s->LinkProgram()) {
+			return;
+		}
+
+		if (ob->getShape() == "Square")
+			m = Mesh::GenerateSquare(Vector4(0.0f, 0.0f, 1.0f, 1.0f));
+		else if (ob->getShape() == "Quad")
+			m = Mesh::GenerateQuad();
+
+		if (ob->getTexPath() != "Null") {
+			m->SetTexture(SOIL_load_OGL_texture(ob->getTexPath().c_str(), SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));
+
+			if (!m->GetTexture()) {
+				return;
+			}
+			tex = true;
+		}
+		else {
+			m->SetTexture(NULL);
+			tex = false;
+		}
+
+
+
+		RenderObject* o = new RenderObject(m, s);
+		o->SetModelMatrix(Matrix4::Translation(ob->getPos()) * Matrix4::Scale(Vector3(ob->getScale().x, ob->getScale().y, ob->getScale().x)));
+		r.AddRenderObject(*o);
+		r.AddObject(*o, *ob);
+
+			
 	}
 
-	RenderObject* o = new RenderObject(m, s);
-	o->SetModelMatrix(Matrix4::Translation(Vector3(objects[0]->getXPos(), objects[0]->getYPos(), -10)) * Matrix4::Scale(Vector3(0.5f,0.5f,0.5f)));
-	//RenderObject o2(m, s);
-	//o.SetModelMatrix
-	r.AddRenderObject(*o);
-	//r.AddRenderObject(o2);
+	//RenderObject* o = new RenderObject(m, s);
+	//o->SetModelMatrix(Matrix4::Translation(Vector3(objects[0]->getXPos(), objects[0]->getYPos(), -10)) * Matrix4::Scale(Vector3(0.25f,0.5f,0.5f)));
+	////RenderObject o2(m, s);
+	////o.SetModelMatrix
+	//r.AddRenderObject(*o);
+	////r.AddRenderObject(o2);
 
-	//obj.insert(pair<RenderObject*, GameObject*>(o, objects[0]));
+	////obj.insert(pair<RenderObject*, GameObject*>(o, objects[0]));
 
-	r.AddObject(*o, *objects[0]);
+	//r.AddObject(*o, *objects[0]);
 
-	o = new RenderObject(Mesh::GenerateQuad(), s);
-	o->SetModelMatrix(Matrix4::Translation(Vector3(0, 0, -50))* Matrix4::Scale(Vector3(20, 20, 20)));
-	r.AddRenderObject(*o);
+	//o = new RenderObject(Mesh::GenerateQuad(), s);
+	//o->SetModelMatrix(Matrix4::Translation(Vector3(0, 0, -50))* Matrix4::Scale(Vector3(20, 20, 20)));
+	//r.AddRenderObject(*o);
 
-	o = new RenderObject(m, s);
-	o->SetModelMatrix(Matrix4::Translation(Vector3(objList->at(objList->size() - 1)->getXPos(), objList->at(objList->size() - 1)->getYPos(), -10)) * Matrix4::Scale(Vector3(0.5f, 0.5f, 0.5f)));
-	r.AddRenderObject(*o);
-	r.AddObject(*o, *objList->at(objList->size() - 1));
+	//o = new RenderObject(m, s);
+	//o->SetModelMatrix(Matrix4::Translation(Vector3(objList->at(objList->size() - 1)->getXPos(), objList->at(objList->size() - 1)->getYPos(), -10)) * Matrix4::Scale(Vector3(0.25f, 0.5f, 0.5f)));
+	//r.AddRenderObject(*o);
+	//r.AddObject(*o, *objList->at(objList->size() - 1));
 
 	
 	r.SetProjMatrix(Matrix4::Perspective(1, 1000, 1920 / 1080, 45.0f));
@@ -71,32 +114,46 @@ void Graphics::NewObject()
 
 void Graphics::RecieveEvent()
 {
-	for (int i = 0; i < eQueue->getEvents().size(); ++i) {
+	for (int i = eQueue->getEvents().size()-1; i >= 0; --i) {
 		//if(eQueue->getEvents().at(i)->getSubsystems())
 		for (int j = 0; j < eQueue->getEvents().at(i)->getSubsystems().size(); ++j) {
+			for (int o = 0; o < objList->size(); ++o) {
 
-			if (eQueue->getEvents().at(i)->getSubsystems().at(j) == GetSubsystem()) {
-				if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::Move_Left) {
-					r.getRenderObj().at(0)->SetModelMatrix(Matrix4::Translation(Vector3(objList->at(0)->getXPos(), objList->at(0)->getYPos(), -10.0f)) * Matrix4::Rotation(90.0f, Vector3(0.0f, 0.0f, 1.0f)) * Matrix4::Scale(Vector3(0.5f, 0.5f, 0.5f)));
-					objList->at(i)->setRotation(90.0f);
-				}
-				if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::Move_Right) {
-					r.getRenderObj().at(0)->SetModelMatrix(Matrix4::Translation(Vector3(objList->at(0)->getXPos(), objList->at(0)->getYPos(), -10.0f)) * Matrix4::Rotation(270.0f, Vector3(0.0f, 0.0f, 1.0f)) * Matrix4::Scale(Vector3(0.5f, 0.5f, 0.5f)));
-					objList->at(i)->setRotation(270.0f);
-				}
-				if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::Move_Up) {
-					r.getRenderObj().at(0)->SetModelMatrix(Matrix4::Translation(Vector3(objList->at(0)->getXPos(), objList->at(0)->getYPos(), -10.0f)) * Matrix4::Rotation(0.0f, Vector3(0.0f, 0.0f, 1.0f)) * Matrix4::Scale(Vector3(0.5f, 0.5f, 0.5f)));
-					objList->at(i)->setRotation(0.0f);
-				}
-				if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::Move_Down) {
-					r.getRenderObj().at(0)->SetModelMatrix(Matrix4::Translation(Vector3(objList->at(0)->getXPos(), objList->at(0)->getYPos(), -10.0f)) * Matrix4::Rotation(180.0f, Vector3(0.0f, 0.0f, 1.0f)) * Matrix4::Scale(Vector3(0.5f, 0.5f, 0.5f)));
-					objList->at(i)->setRotation(180.0f);
-				}
-				if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::New_Obj) {
-					NewObject();
-				}
-				if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::Update_Pos_AI) {
-					r.getRenderObj().at(1)->SetModelMatrix(Matrix4::Translation(Vector3(objList->at(1)->getXPos(), objList->at(1)->getYPos(), -10.0f)));
+
+				if (eQueue->getEvents().at(i)->getSubsystems().at(j) == GetSubsystem()) {
+
+					if (objList->at(o)->getType() == ObjectType::Player) {
+						if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::Move_Left) {
+							r.getRenderObj().at(o)->SetModelMatrix(Matrix4::Translation(Vector3(objList->at(o)->getXPos(), objList->at(o)->getYPos(), -10.0f)) * Matrix4::Rotation(90.0f, Vector3(0.0f, 0.0f, 1.0f)) * Matrix4::Scale(Vector3(0.5f, 0.25f, 0.5f)));
+							//objList->at(i)->setRotation(90.0f);
+						}
+						if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::Move_Right) {
+							r.getRenderObj().at(o)->SetModelMatrix(Matrix4::Translation(Vector3(objList->at(o)->getXPos(), objList->at(o)->getYPos(), -10.0f)) * Matrix4::Rotation(270.0f, Vector3(0.0f, 0.0f, 1.0f)) * Matrix4::Scale(Vector3(0.5f, 0.25f, 0.5f)));
+							//objList->at(i)->setRotation(270.0f);
+						}
+						if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::Move_Up) {
+							r.getRenderObj().at(o)->SetModelMatrix(Matrix4::Translation(Vector3(objList->at(o)->getXPos(), objList->at(o)->getYPos(), -10.0f)) * Matrix4::Rotation(0.0f, Vector3(0.0f, 0.0f, 1.0f)) * Matrix4::Scale(Vector3(0.25f, 0.5f, 0.5f)));
+							//objList->at(i)->setRotation(0.0f);
+						}
+						if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::Move_Down) {
+							r.getRenderObj().at(o)->SetModelMatrix(Matrix4::Translation(Vector3(objList->at(o)->getXPos(), objList->at(o)->getYPos(), -10.0f)) * Matrix4::Rotation(180.0f, Vector3(0.0f, 0.0f, 1.0f)) * Matrix4::Scale(Vector3(0.25f, 0.5f, 0.5f)));
+							//objList->at(i)->setRotation(180.0f);
+						}
+					}
+					if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::New_Obj) {
+						NewObject();
+					}
+
+					if (objList->at(o)->getType() == ObjectType::Enemy) {
+						if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::Update_Pos_AI) {
+							/*r.getRenderObj().at(1)->SetModelMatrix(Matrix4::Translation(Vector3(objList->at(1)->getXPos(), objList->at(1)->getYPos(), -10.0f)));*/
+							pushed = true;
+						}
+
+						if (pushed) {
+							r.getRenderObj().at(o)->SetModelMatrix(Matrix4::Translation(Vector3(objList->at(o)->getXPos(), objList->at(o)->getYPos(), -10.0f)) * Matrix4::Scale(Vector3(0.25f, 0.5f, 0.5f)));
+						}
+					}
 				}
 
 				if (eQueue->getEvents().at(i)->getSubsystems().size() - 1 == j) {

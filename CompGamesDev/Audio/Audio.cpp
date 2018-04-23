@@ -35,7 +35,12 @@ Audio::~Audio()
 void Audio::AudioUpdate(float msec)
 {
 
-	result = system->playSound(soundTest, 0, false, &channel);
+	if (!playing) {
+		result = system->playSound(soundTest, 0, false, &channel);
+	}
+
+	result = channel->isPlaying(&playing);
+	
 
 	result = system->update();
 

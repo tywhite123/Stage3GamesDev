@@ -17,6 +17,7 @@ public:
 	virtual void Draw();
 	static Mesh* GenerateTriangle();
 	static Mesh* GenerateQuad();
+	static Mesh* GenerateSquare(Vector4 colour);
 	static Mesh* GenerateSphere();
 
 	void SetTexture(GLuint tex) { texture = tex; }

@@ -5,6 +5,7 @@
 #include <Physics\Physics.h>
 #include <Input\Input.h>
 #include <Audio\Audio.h>
+#include <FileIO\GameLoader.h>
 
 
 int main() {
@@ -12,7 +13,9 @@ int main() {
 	Window w("CSC3224 - Game Engine", 1920, 1080);
 
 	vector<GameObject*> gameObjects;
-	gameObjects.push_back(new GameObject(0.0f, 0.0f));
+
+	GameLoader("..\\TestLevel\\test.csv", gameObjects);
+
 
 	EventQueue* queue = new EventQueue();
 
@@ -25,9 +28,7 @@ int main() {
 		float msec = w.GetTimer()->GetTimedMS();
 		input.InputUpdate(msec);
 		physics.PhysicsUpdate(msec);
-		
 		graphics.GraphicsUpdate(msec);
-
 		audio.AudioUpdate(msec);
 	}
 

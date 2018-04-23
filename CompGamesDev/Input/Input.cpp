@@ -40,6 +40,10 @@ void Input::InputUpdate(float msec)
 		eQueue->pushEvent(new Event(GameEnums::MType::Rest));
 	}
 
+	if (g.IsPressed(XINPUT_GAMEPAD_B)) {
+		g.vibrate();
+	}
+
 
 	if (g.IsPressed(XINPUT_GAMEPAD_A) || Window::GetKeyboard()->KeyDown(KEYBOARD_T)) {
 		printf("Button A is pressed!\n");

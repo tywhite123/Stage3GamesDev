@@ -24,5 +24,7 @@ private:
 	FMOD_RESULT result;
 	unsigned int version;
 	void *extradriverdata = 0;
+
+	bool playing = false;
 };
 

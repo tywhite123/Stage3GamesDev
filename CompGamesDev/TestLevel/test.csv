@@ -1,0 +1,10 @@
+Object,Type,PosX,PosY,Depth,Rotation,ScaleX,ScaleY,Texture
+Player,Square,0,0,-10,0,0.25,0.5,..\TestLevel\goomba.png
+Enemy,Square,1,1,-10,0,0.25,0.5,..\TestLevel\goomba.png
+Map,Quad,0,0,-50,0,20,20,Null
+Wall,Square,20,0,-49,0,2,50,Null
+Wall,Square,-20,0,-49,0,2,50,Null
+Wall,Square,0,-20,-49,0,50,2,Null
+Wall,Square,-13.5,20,-49,0,24.5,2,Null
+Wall,Square,13.5,20,-49,0,24.5,2,Null
+Door,Square,0,20,-49,0,3,2,..\TestLevel\door.png
