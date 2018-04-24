@@ -24,11 +24,11 @@ public:
 		renderObjects.push_back(&r);
 	}
 
-	void AddObject(RenderObject &r, GameObject &g) {
-		obj.insert(pair<RenderObject*, GameObject*>(&r, &g));
+	void AddObject(GameObject &g, RenderObject &r) {
+		obj.insert(pair<GameObject*, RenderObject*>(&g, &r));
 	}
 
-	map<RenderObject*, GameObject*> getObjects() {
+	map<GameObject*, RenderObject*> getObjects() {
 		return obj;
 	}
 
@@ -42,8 +42,18 @@ public:
 	void SetViewMatrix(Matrix4 m) { viewMatrix = m; }
 	Matrix4 GetViewMatrix() { return viewMatrix; }
 
+
+	void removeRenderObj(GameObject* o) {
+		for (int i = 0; i < renderObjects.size(); ++i) {
+			if (renderObjects.at(i) == obj.at(o)) {
+				renderObjects.erase(renderObjects.begin() + i);
+			}
+		}
+		obj.erase(o);
+	}
+
 protected:
 	vector<RenderObject*> renderObjects;
-	map<RenderObject*, GameObject*> obj;
+	map<GameObject*, RenderObject*> obj;
 };
 

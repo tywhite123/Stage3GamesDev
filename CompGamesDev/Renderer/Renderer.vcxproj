@@ -95,7 +95,7 @@
       <AdditionalDependencies>nclgl.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalDependencies>nclgl.lib; Common.lib</AdditionalDependencies>
+      <AdditionalDependencies>Common.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

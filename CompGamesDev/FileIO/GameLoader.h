@@ -14,6 +14,8 @@ public:
 	~GameLoader();
 
 private:
+
+	//Information for game loader
 	std::string gameInfo;
 	std::vector<GameObject*>* objList;
 };

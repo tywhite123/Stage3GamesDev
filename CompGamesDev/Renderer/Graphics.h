@@ -37,6 +37,8 @@ private:
 	bool pushed = false;
 	bool tex;
 
+	int a;
+
 	float msec;
 };
 

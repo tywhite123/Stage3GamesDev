@@ -1,1 +1,11 @@
-﻿  Box2D.vcxproj -> H:\GameDev\CompGamesDev\lib\Debug\Box2D.lib
+﻿  b2Collision.cpp
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  b2World.cpp
+  b2Island.cpp
+  b2PolygonContact.cpp
+  b2Contact.cpp
+  b2CircleContact.cpp
+  b2TimeOfImpact.cpp
+  b2Distance.cpp
+  Box2D.vcxproj -> H:\GameDev\CompGamesDev\lib\Debug\Box2D.lib

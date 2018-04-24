@@ -44,10 +44,8 @@ void Input::InputUpdate(float msec)
 		g.vibrate();
 	}
 
-
-	if (g.IsPressed(XINPUT_GAMEPAD_A) || Window::GetKeyboard()->KeyDown(KEYBOARD_T)) {
-		printf("Button A is pressed!\n");
-		eQueue->pushEvent(new Event(GameEnums::MType::New_Obj));
+	if (g.IsPressed(XINPUT_GAMEPAD_X) || Window::GetKeyboard()->KeyDown(KEYBOARD_SPACE)) {
+		eQueue->pushEvent(new Event(GameEnums::MType::Attack));
 	}
 
 }

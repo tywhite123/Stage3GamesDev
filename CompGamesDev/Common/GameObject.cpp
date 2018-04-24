@@ -3,16 +3,19 @@
 
 GameObject::GameObject(float x, float y)
 {
+	//Assign position
 	objectPos.x = x;
 	objectPos.y = y;
 }
 
 GameObject::GameObject(float x, float y, float depth, float rot, float sX, float sY, std::string type, std::string shape, std::string tex)
 {
+	//Assign all the variables to the object
 	objectPos = Vector3(x, y, depth);
 	rotation = rot;
 	scale = Vector2(sX, sY);
 
+	//Check the type and assign it the correct enum
 	if (type == "Player")
 		objType = ObjectType::Player;
 	else if (type == "Enemy")

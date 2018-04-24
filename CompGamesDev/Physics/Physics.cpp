@@ -8,7 +8,7 @@ Physics::Physics(std::vector<GameObject*>& objects, EventQueue* eq) : objList(&o
 	eQueue = eq;
 
 
-	///world.SetContactListener(&contactListener);
+	//world.SetContactListener(&contactListener);
 
 
 
@@ -27,6 +27,10 @@ Physics::Physics(std::vector<GameObject*>& objects, EventQueue* eq) : objList(&o
 
 
 	for (auto ob : objects) {
+
+		if (ob->getType() == ObjectType::Player || ob->getType() == ObjectType::Enemy || ob->getType() == ObjectType::Door) {
+			ob->setHP(100);
+		}
 
 		if (ob->getType() == ObjectType::Map) {
 			continue;
@@ -49,18 +53,14 @@ Physics::Physics(std::vector<GameObject*>& objects, EventQueue* eq) : objList(&o
 		b2Body* body = world.CreateBody(&bodyDef);
 
 		b2PolygonShape dynamicBox;
-
-		if (ob->getType() == ObjectType::Player || ob->getType() == ObjectType::Enemy) {
-			dynamicBox.SetAsBox(0.125f, 0.25f);
-		}
-
-		else if (ob->getType() == ObjectType::Wall && ob->getXPos() > ob->getYPos()) 
-			dynamicBox.SetAsBox(4.0f, 16.13f);
-		else if (ob->getType() == ObjectType::Wall && ob->getXPos() < ob->getYPos()){
-			//bodyDef.position.Set(ob->getXPos(), ob->getYPos()/5);
-			dynamicBox.SetAsBox(16.13f, 4.0f);
-		}
-		/*else if(ob->getType() == ObjectType::Wall && )*/
+			
+		if(ob->getType() == ObjectType::Player || ob->getType() == ObjectType::Enemy || ob->getType() == ObjectType::Door)
+			dynamicBox.SetAsBox(ob->getScale().x/2, ob->getScale().y/2);
+		else if (ob->getType() == ObjectType::Wall && ob->getXPos() > ob->getYPos())
+			dynamicBox.SetAsBox((ob->getScale().x / 2), ob->getScale().y / 2);
+		else if (ob->getType() == ObjectType::Wall && ob->getXPos() < ob->getYPos())
+			dynamicBox.SetAsBox(ob->getScale().x / 2, (ob->getScale().y / 2));
+		
 			
 		b2FixtureDef fixtureDef;
 		fixtureDef.shape = &dynamicBox;
@@ -74,54 +74,6 @@ Physics::Physics(std::vector<GameObject*>& objects, EventQueue* eq) : objList(&o
 		obj.insert(std::pair<GameObject*, b2Body*>(ob, body));
 	}
 
-
-
-
-	/*b2BodyDef bodyDef;
-	bodyDef.type = b2_dynamicBody;
-	bodyDef.position.Set(objects[0]->getXPos(), objects[0]->getYPos());
-	b2Body* body = world.CreateBody(&bodyDef);
-
-	b2PolygonShape dynamicBox;
-	dynamicBox.SetAsBox(0.015625f, 0.125f);
-
-	b2FixtureDef fixtureDef;
-	fixtureDef.shape = &dynamicBox;
-
-	fixtureDef.density = 1.0f;
-
-	fixtureDef.friction = 0.3f;
-
-	body->CreateFixture(&fixtureDef);
-
-	obj.insert(std::pair<GameObject*, b2Body*>(objects[0], body));*/
-
-
-
-
-
-
-	/*GameObject* o = new GameObject(1.0f, 1.0f);
-	objList->push_back(o);
-	b2BodyDef bodyDef2;
-	bodyDef2.type = b2_dynamicBody;
-	bodyDef2.position.Set(o->getXPos(), o->getYPos());
-	b2Body* body2 = world.CreateBody(&bodyDef2);
-
-	b2PolygonShape dynamicBox2;
-	dynamicBox2.SetAsBox(0.015625f, 0.125f);
-
-	b2FixtureDef fixtureDef2;
-	fixtureDef2.shape = &dynamicBox;
-
-	fixtureDef2.density = 1.0f;
-
-	fixtureDef2.friction = 0.0f;
-
-	body2->CreateFixture(&fixtureDef2);
-
-	obj.insert(std::pair<GameObject*, b2Body*>(objList->at(objList->size() - 1), body2));*/
-
 }
 
 
@@ -134,11 +86,6 @@ void Physics::PhysicsUpdate(float msec)
 	RecieveEvent();
 	world.Step(timeStep, velocityIterations, positionIterations);
 
-	/*b2Vec2 position = body->GetPosition();
-	float32 angle = body->GetAngle();*/
-
-	/*obj.at(body)->setXPos(obj.at(body)->getXPos() + position.x);
-	obj.at(body)->setYPos(position.y);*/
 	for (b2Contact* contact = world.GetContactList(); contact; contact = contact->GetNext()) {		
 		contact->GetFixtureA()->GetBody()->SetLinearVelocity(b2Vec2(0.0f, 0.0f));
 		contact->GetFixtureA()->GetBody()->SetAngularVelocity(0);
@@ -158,12 +105,8 @@ void Physics::PhysicsUpdate(float msec)
 		o.first->setYPos(position.y);
 		
 		
-		/*for (b2ContactEdge* edge = o.second->GetContactList(); edge; edge = edge->next) {
-			b2Vec2 pos = edge->contact->GetFixtureB()->GetBody()->GetPosition();
-			printf("%4.2f, %4.2f\n", pos.x, pos.y);
-		}*/
-		
-		printf("%4.2f %4.2f %4.2f\n", o.first->getXPos(), o.first->getYPos(), angle);
+		//printf("%4.2f %4.2f %4.2f\n", o.first->getXPos(), o.first->getYPos(), angle);
+		//printf("Enum Val: %d, Health: %d\n", o.first->getType(), o.first->getHP());
 	}
 
 
@@ -199,6 +142,8 @@ void Physics::NewObject()
 
 	printf("New object");
 }
+
+
 
 void Physics::RecieveEvent()
 {
@@ -247,6 +192,35 @@ void Physics::RecieveEvent()
 							vel.y = 0.0f;
 							obj.at(objList->at(o))->SetLinearVelocity(vel);
 						}
+
+						if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::Attack) {
+							for (int z = 0; z < objList->size(); ++z) {
+
+								
+
+
+								for (b2Contact* contact = world.GetContactList(); contact; contact = contact->GetNext()) {
+									if (objList->at(z)->getType() == ObjectType::Enemy || objList->at(z)->getType() == ObjectType::Door) {
+										if (contact->GetFixtureB()->GetBody() == obj.at(objList->at(z))) {
+											objList->at(z)->updateHP(-1);
+										}
+										
+									}
+								}
+
+								if (objList->at(z)->getType() == ObjectType::Enemy || objList->at(z)->getType() == ObjectType::Door) {
+ 									if (objList->at(z)->getHP() <= 0) {
+										printf("%d", world.IsLocked());
+										world.DestroyBody(obj.at(objList->at(z)));
+										obj.erase(objList->at(z));
+										continue;
+									}
+								}
+
+								//eQueue->pushEvent(new Event(GameEnums::MType::Update_Pos_AI));
+							}
+						}
+
 					}
 					
 			}
