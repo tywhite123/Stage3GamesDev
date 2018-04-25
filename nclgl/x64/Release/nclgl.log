@@ -1,0 +1,20 @@
+﻿  Camera.cpp
+  Frustum.cpp
+  GameTimer.cpp
+  HeightMap.cpp
+  Keyboard.cpp
+  Matrix4.cpp
+  Mesh.cpp
+Mesh.cpp(156): warning C4267: '=': conversion from 'size_t' to 'GLuint', possible loss of data
+Mesh.cpp(162): warning C4018: '<': signed/unsigned mismatch
+  Mouse.cpp
+  OBJMesh.cpp
+OBJMesh.cpp(170): warning C4267: '=': conversion from 'size_t' to 'GLuint', possible loss of data
+  OGLRenderer.cpp
+OGLRenderer.cpp(413): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  Plane.cpp
+  Quaternion.cpp
+  SceneNode.cpp
+  Shader.cpp
+  Window.cpp
+  nclgl.vcxproj -> H:\GameDev\CompGamesDev\lib\Release\nclgl.lib

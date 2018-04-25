@@ -111,7 +111,7 @@
     <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>..\GLEW\include;C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\um;..\SOIL;$(IncludePath)</IncludePath>
+    <IncludePath>..\GLEW\include;..\SOIL;$(IncludePath)</IncludePath>
     <LibraryPath>..\GLEW\libx64;..\SOIL;$(LibraryPath)</LibraryPath>
     <TargetName>$(ProjectName)</TargetName>
     <OutDir>$(SolutionDir)lib\$(Configuration)\</OutDir>
@@ -122,7 +122,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>..\GLEW\include;..\SOIL;$(IncludePath)</IncludePath>
-    <LibraryPath>..\GLEW\lib;..\SOIL;$(LibraryPath)</LibraryPath>
+    <LibraryPath>..\GLEW\libx64;..\SOIL;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)lib\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

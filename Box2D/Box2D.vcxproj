@@ -47,7 +47,7 @@
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>..\Release\</OutDir>
+    <OutDir>$(SolutionDir)lib\$(Configuration)\</OutDir>
     <IntDir>obj\Release\</IntDir>
     <TargetName>Box2D</TargetName>
     <TargetExt>.lib</TargetExt>

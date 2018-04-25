@@ -60,6 +60,9 @@ int main() {
 
 	}
 
+	for (auto o : gameObjects) {
+		delete o;
+	}
 
 	//delete objects
 	delete queue, gameObjects;

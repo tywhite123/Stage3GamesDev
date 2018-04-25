@@ -1,0 +1,5 @@
+﻿  FileReader.cpp
+h:\gamedev\compgamesdev\fileio\FileReader.h(4): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  GameLoader.cpp
+  GameSaver.cpp
+  FileIO.vcxproj -> H:\GameDev\CompGamesDev\lib\Release\FileIO.lib

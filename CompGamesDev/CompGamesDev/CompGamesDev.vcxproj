@@ -73,6 +73,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>..\..\GLEW\include;..\..\SOIL;..\..\;..\;..\..\FMOD\inc;$(IncludePath)</IncludePath>
     <LibraryPath>..\lib\$(Configuration);..\..\SOIL\$(Platform)\$(Configuration);..\..\GLEW\libx64;..\..\FMOD\lib;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)$(Configuration)$(Platform)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>..\..\GLEW\include;..\..\SOIL;..\..\;..\;..\..\FMOD\inc;$(IncludePath)</IncludePath>
+    <LibraryPath>..\lib\$(Configuration);..\..\SOIL\$(Platform)\$(Configuration);..\..\GLEW\libx64;..\..\FMOD\lib;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)$(Configuration)$(Platform)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -115,6 +121,7 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>nclgl.lib;Graphics.lib;Physics.lib;Input.lib;Common.lib;Audio.lib;FileIO.lib;Profiler.lib;SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
