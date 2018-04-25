@@ -17,8 +17,7 @@ Graphics::Graphics(Window &w, vector<GameObject*>& objects, EventQueue* eq) : r(
 
 	//Set the event queue
 	eQueue = eq;
-	
-	
+
 	//For each game object create a render object
 	for (auto ob : objects) {
 
@@ -60,7 +59,6 @@ Graphics::Graphics(Window &w, vector<GameObject*>& objects, EventQueue* eq) : r(
 		r.AddRenderObject(*o);
 		r.AddObject(*ob, *o);
 
-			
 	}
 
 	//RenderObject* o = new RenderObject(m, s);

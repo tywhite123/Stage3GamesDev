@@ -4,6 +4,7 @@
 #include <vector>
 #include <map>
 #include <Common\GameObject.h>
+#include <GLText\gltext.h>
 
 using namespace std;
 
@@ -58,5 +59,8 @@ public:
 protected:
 	vector<RenderObject*> renderObjects;
 	map<GameObject*, RenderObject*> obj;
+
+	GLTtext *playerHealth;
+	GLTtext *enemyHealth;
 };
 

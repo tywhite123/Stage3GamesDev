@@ -67,6 +67,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FMOD", "FMOD", "{C2E4A9A0-F
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Profiler", "Profiler\Project1.vcxproj", "{D5557F96-FA45-4B3E-9A99-67E0A2C4E4BF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GLText", "GLText", "{A7888EF2-9C2B-4B04-8A3D-A9163CF9F7AC}"
+	ProjectSection(SolutionItems) = preProject
+		..\GLText\gltext.h = ..\GLText\gltext.h
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -161,6 +166,7 @@ Global
 		{98D6B51B-CB0A-4389-ADC6-24082B967C3F} = {BEBF0228-E3BE-4804-A863-FD9A671E703E}
 		{A434E80C-1049-10BE-D9CA-B31D459E0CEF} = {BEBF0228-E3BE-4804-A863-FD9A671E703E}
 		{C2E4A9A0-F902-4068-BAB2-592A3ACB3A32} = {BEBF0228-E3BE-4804-A863-FD9A671E703E}
+		{A7888EF2-9C2B-4B04-8A3D-A9163CF9F7AC} = {BEBF0228-E3BE-4804-A863-FD9A671E703E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0AFC085E-0EBC-40C2-B7F2-83FA3A6B8ECC}

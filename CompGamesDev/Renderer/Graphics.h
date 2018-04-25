@@ -4,6 +4,7 @@
 #include <Common\EventQueue.h>
 #include <map>
 
+
 class Graphics
 {
 public:
@@ -40,6 +41,8 @@ private:
 	std::map<RenderObject*, GameObject*> obj;
 	std::vector<GameObject*>* objList;
 	EventQueue* eQueue;
+
+	//GLTtext *text;
 
 	bool pushed = false;
 	bool tex;

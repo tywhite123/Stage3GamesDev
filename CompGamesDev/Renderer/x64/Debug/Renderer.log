@@ -1,7 +1,3 @@
-﻿  Graphics.cpp
-h:\gamedev\compgamesdev\renderer\graphics.cpp(119): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  Generating Code...
-  Compiling...
-  Renderer.cpp
-  Generating Code...
+﻿  Renderer.cpp
+h:\gamedev\gltext\gltext.h(328): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
   Renderer.vcxproj -> H:\GameDev\CompGamesDev\lib\Debug\Graphics.lib

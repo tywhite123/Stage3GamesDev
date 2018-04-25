@@ -4,11 +4,22 @@ Renderer::Renderer(Window & parent) : OGLRenderer(parent)
 {
 	glEnable(GL_DEPTH_TEST);
 
+
+	gltInit();
+	playerHealth = gltCreateText();
+	enemyHealth = gltCreateText();
+
+	gltColor(1.0f, 1.0f, 1.0f, 1.0f);
+
 	init = true;
 }
 
 Renderer::~Renderer(void)
 {
+
+	gltDeleteText(playerHealth);
+	gltDeleteText(enemyHealth);
+	gltTerminate();
 }
 
 void Renderer::RenderScene()
@@ -19,6 +30,22 @@ void Renderer::RenderScene()
 	for (vector<RenderObject*>::iterator i = renderObjects.begin(); i != renderObjects.end(); ++i) {
 		Render(*(*i));
 	}
+
+	for (auto o : obj) {
+		if (o.first->getType() == ObjectType::Player) {
+			std::string health = "Player Health: " + std::to_string(o.first->getHP());
+
+			gltSetText(playerHealth, health.c_str());
+			gltDrawText2D(playerHealth, 0.0f, 0.0f, 1.0f);
+		}
+		else if (o.first->getType() == ObjectType::Enemy) {
+			std::string health = "Enemy Health: " + std::to_string(o.first->getHP());
+			gltSetText(enemyHealth, health.c_str());
+			gltDrawText2D(enemyHealth, 0.0f, 15.0f, 1.0f);
+		}
+	}
+
+	//gltDrawText2D(text, 0.0f, 0.0f, 1.0f);
 	SwapBuffers();
 }
 

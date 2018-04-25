@@ -1,1 +1,6 @@
-﻿  Renderer.vcxproj -> H:\GameDev\CompGamesDev\lib\Release\Graphics.lib
+﻿  Graphics.cpp
+H:\GameDev\GLText\gltext.h(328): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+Graphics.cpp(127): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Renderer.cpp
+H:\GameDev\GLText\gltext.h(328): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  Renderer.vcxproj -> H:\GameDev\CompGamesDev\lib\Release\Graphics.lib
