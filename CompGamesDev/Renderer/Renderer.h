@@ -20,6 +20,7 @@ public:
 
 	virtual void UpdateScene(float msec);
 
+	//Add/get objects from the stores
 	void AddRenderObject(RenderObject &r) {
 		renderObjects.push_back(&r);
 	}
@@ -36,6 +37,8 @@ public:
 		return renderObjects;
 	}
 
+
+	//Setting up view and model matrix
 	void SetProjMatrix(Matrix4 m) { projMatrix = m; }
 	Matrix4 GetProjMatrix() { return projMatrix; }
 

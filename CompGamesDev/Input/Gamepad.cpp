@@ -14,18 +14,22 @@ Gamepad::~Gamepad()
 
 bool Gamepad::IsPressed(WORD button)
 {
-	return (state.Gamepad.wButtons & button) != 0;
+	//return if the button is pressed
+	return (getState().Gamepad.wButtons & button) != 0;
 }
 
 bool Gamepad::CheckConnected()
 {
+
 	DWORD dwResult;
 	for (DWORD i = 0; i < XUSER_MAX_COUNT; ++i) {
+		//Create the state
 		ZeroMemory(&state, sizeof(XINPUT_STATE));
 
+		//get the state of the controller
 		dwResult = XInputGetState(i, &state);
 		if(dwResult == ERROR_SUCCESS){
-			printf("Controller Connected in port %d", i);
+			//printf("Controller Connected in port %d", i);
 			controllerID = i;
 		}
 		else{
@@ -36,9 +40,12 @@ bool Gamepad::CheckConnected()
 
 bool Gamepad::Refresh()
 {
+	//CHeck if controller is connected
 	if (controllerID == -1) {
 		CheckConnected();
 	}
+
+	//Reset the contollers state
 	if (controllerID != -1) {
 		ZeroMemory(&state, sizeof(XINPUT_STATE));
 		if (XInputGetState(controllerID, &state) != ERROR_SUCCESS) {
@@ -46,17 +53,21 @@ bool Gamepad::Refresh()
 			return false;
 		}
 
-		//Left stick code see - https://msdn.microsoft.com/en-us/library/windows/desktop/ee417001(v=vs.85).aspx
+		//Left stick from the microsoft documentation on using xinput, code see - https://msdn.microsoft.com/en-us/library/windows/desktop/ee417001(v=vs.85).aspx
+		//get the state of the left stick
 		LX = state.Gamepad.sThumbLX;
 		LY = state.Gamepad.sThumbLY;
 
+		//get the magnitude
 		float mag = sqrt(LX*LX + LY*LY);
 
+		//get the values for the stick normalised
 		float normalisedLX = LX / mag;
 		float normalisedLY = LY / mag;
 
 		float normalisedMag = 0;
 
+		//Check the mag is in the deadzone
 		if (mag > XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE) {
 
 			if (mag > 32767) mag = 32767;
@@ -88,12 +99,19 @@ bool Gamepad::Refresh()
 	return false;
 }
 
-void Gamepad::vibrate()
+XINPUT_STATE Gamepad::getState()
 {
-	XINPUT_VIBRATION vibration;
-	ZeroMemory(&vibration, sizeof(XINPUT_VIBRATION));
-	vibration.wLeftMotorSpeed = 65535; // use any value between 0-65535 here
-	vibration.wRightMotorSpeed = 65535; // use any value between 0-65535 here
-	XInputSetState(0, &vibration);
-
+	ZeroMemory(&state, sizeof(XINPUT_STATE));
+	XInputGetState(controllerID, &state);
+	return state;
 }
+
+//void Gamepad::vibrate()
+//{
+//	XINPUT_VIBRATION vibration;
+//	ZeroMemory(&vibration, sizeof(XINPUT_VIBRATION));
+//	vibration.wLeftMotorSpeed = 65535; // use any value between 0-65535 here
+//	vibration.wRightMotorSpeed = 65535; // use any value between 0-65535 here
+//	XInputSetState(0, &vibration);
+//
+//}

@@ -5,34 +5,57 @@ Input::Input(Window & w, std::vector<GameObject*>& objects, EventQueue* eq)
 	win = &w;
 	obj = &objects;
 	eQueue = eq;
+
+	//Create the controller objects
+	g = new Gamepad();
+	kb = new KeyboardController();
+
+	//Check to see if gamepad is connected before deciding what controller to use
+	if (g->CheckConnected()) {
+		con = g;
+	}
+	else {
+		con = kb;
+	}
 	
 }
 
 Input::~Input()
 {
+	delete kb, g;
+	con = g = kb = nullptr;
 }
 
 void Input::InputUpdate(float msec)
 {
-	g.Refresh();
+	//Refresh the gamepad
+	g->Refresh();
 
+	//Check if the gamepad is connected to and change controller accordingly
+	if (g->CheckConnected()) {
+		con = g;
+	}
+	else {
+		con = kb;
+	}
 
-	if (Window::GetKeyboard()->KeyDown(KEYBOARD_W) || g.IsPressed(XINPUT_GAMEPAD_DPAD_UP) || g.getLY() >= 10000) {
+	//Calls the control functions based on what the controller is
+	if (con->up()) {
 		//obj->at(0)->setYPos(obj->at(0)->getYPos() + 0.1f);
 		eQueue->pushEvent(new Event(GameEnums::MType::Move_Up));
 	}
 
-	else if (Window::GetKeyboard()->KeyDown(KEYBOARD_S) || g.IsPressed(XINPUT_GAMEPAD_DPAD_DOWN) || g.getLY() <= -10000) {
+	else if (con->down()) {
 		//obj->at(0)->setYPos(obj->at(0)->getYPos() - 0.1f);
 		eQueue->pushEvent(new Event(GameEnums::MType::Move_Down));
 	}
 
-	else if (Window::GetKeyboard()->KeyDown(KEYBOARD_A) || g.IsPressed(XINPUT_GAMEPAD_DPAD_LEFT) || g.getLX() <= -10000) {
+	else if (con->left()) {
 		//obj->at(0)->setXPos(obj->at(0)->getXPos() - 0.1f);
 		eQueue->pushEvent(new Event(GameEnums::MType::Move_Left));
 	}
 
-	else if (Window::GetKeyboard()->KeyDown(KEYBOARD_D) || g.IsPressed(XINPUT_GAMEPAD_DPAD_RIGHT) || g.getLX() >= 10000) {
+	else if (con->right()) {
 		//obj->at(0)->setXPos(obj->at(0)->getXPos() + 0.1f);
 		eQueue->pushEvent(new Event(GameEnums::MType::Move_Right));
 	}
@@ -40,11 +63,7 @@ void Input::InputUpdate(float msec)
 		eQueue->pushEvent(new Event(GameEnums::MType::Rest));
 	}
 
-	if (g.IsPressed(XINPUT_GAMEPAD_B)) {
-		g.vibrate();
-	}
-
-	if (g.IsPressed(XINPUT_GAMEPAD_X) || Window::GetKeyboard()->KeyDown(KEYBOARD_SPACE)) {
+	if (con->attack()) {
 		eQueue->pushEvent(new Event(GameEnums::MType::Attack));
 	}
 

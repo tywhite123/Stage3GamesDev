@@ -48,6 +48,13 @@ void Profiling::profilerUpdate(float msec, float input, float physics, float gra
 			<< "Graphics Time:\t" << graphicsTime << "\n"
 			<< "Total time:\t" << totalTime << "\n";
 
+		std::cout << "\n\nControls: " << "\n"
+			<< "Up:\nKeyboard: W, \tXbox: Up on DPad or Left Stick\n"
+			<< "Down:\nKeyboard: S, \tXbox: Down on DPad or Left Stick\n"
+			<< "Left:\nKeyboard: A, \tXbox: Left on DPad or Left Stick\n"
+			<< "Right:\nKeyboard: D, \tXbox: Right on DPad or Left Stick\n"
+			<< "Attack:\nKeyboard: Space, \tXbox: X on DPad or Left Stick\n";
+
 		//Set to 0;
 		timeSinceProfile = 0.0f;
 		framerate = 0;

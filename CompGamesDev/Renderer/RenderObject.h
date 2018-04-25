@@ -5,6 +5,9 @@
 
 #pragma once
 
+
+//This class was part of the undergrad version of nclgl which was rewritten for use with this project
+
 class RenderObject
 {
 public:

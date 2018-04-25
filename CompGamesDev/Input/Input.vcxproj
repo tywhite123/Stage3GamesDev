@@ -121,11 +121,13 @@
     <ClInclude Include="Controller.h" />
     <ClInclude Include="Gamepad.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="KeyboardController.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="Gamepad.cpp" />
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="KeyboardController.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

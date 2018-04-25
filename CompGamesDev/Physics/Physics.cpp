@@ -198,11 +198,12 @@ void Physics::RecieveEvent()
 
 								
 
-
+								
 								for (b2Contact* contact = world.GetContactList(); contact; contact = contact->GetNext()) {
 									if (objList->at(z)->getType() == ObjectType::Enemy || objList->at(z)->getType() == ObjectType::Door) {
 										if (contact->GetFixtureB()->GetBody() == obj.at(objList->at(z))) {
 											objList->at(z)->updateHP(-1);
+											
 										}
 										
 									}
@@ -210,7 +211,6 @@ void Physics::RecieveEvent()
 
 								if (objList->at(z)->getType() == ObjectType::Enemy || objList->at(z)->getType() == ObjectType::Door) {
  									if (objList->at(z)->getHP() <= 0) {
-										printf("%d", world.IsLocked());
 										world.DestroyBody(obj.at(objList->at(z)));
 										obj.erase(objList->at(z));
 										continue;

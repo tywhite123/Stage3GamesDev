@@ -1,6 +1,6 @@
 ﻿  Mesh.cpp
-h:\gamedev\nclgl\mesh.cpp(152): warning C4267: '=': conversion from 'size_t' to 'GLuint', possible loss of data
-h:\gamedev\nclgl\mesh.cpp(158): warning C4018: '<': signed/unsigned mismatch
+h:\gamedev\nclgl\mesh.cpp(156): warning C4267: '=': conversion from 'size_t' to 'GLuint', possible loss of data
+h:\gamedev\nclgl\mesh.cpp(162): warning C4018: '<': signed/unsigned mismatch
   Generating Code...
   Skipping... (no relevant changes detected)
   Window.cpp

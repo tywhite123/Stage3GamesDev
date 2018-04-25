@@ -10,11 +10,18 @@ public:
 	Graphics(Window &parent, vector<GameObject*>& objects, EventQueue* eq);
 	~Graphics();
 
+	//Update the graphics
 	void GraphicsUpdate(float msec);
+	
+	//New object function which was used for testion
 	void NewObject();
 
+
+	//Recive events
 	void RecieveEvent();
 
+
+	//Get subsystem
 	GameEnums::Subsystem GetSubsystem() { return GameEnums::Subsystem::Graphics; }
 	//bool CheckEsc() {
 		//Window::GetKeyboard()->KeyDown(KEYBOARD_ESCAPE);

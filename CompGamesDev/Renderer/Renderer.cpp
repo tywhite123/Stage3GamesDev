@@ -13,6 +13,8 @@ Renderer::~Renderer(void)
 
 void Renderer::RenderScene()
 {
+
+	//Render the scene and call render for each render objec
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	for (vector<RenderObject*>::iterator i = renderObjects.begin(); i != renderObjects.end(); ++i) {
 		Render(*(*i));
@@ -22,8 +24,10 @@ void Renderer::RenderScene()
 
 void Renderer::Render(const RenderObject & o)
 {
+	//Change the model matrix
 	modelMatrix = o.GetWorldTransform();
 
+	//Get shader and mesh
 	if (o.GetShader() && o.GetMesh()) {
 		/*SetCurrentShader(o.GetShader());*/
 		currentShader = o.GetShader();
@@ -31,6 +35,7 @@ void Renderer::Render(const RenderObject & o)
 		glUseProgram(program);
 		UpdateShaderMatrices();
 
+		//Draw
 		o.Draw();
 
 		glUseProgram(0);
@@ -38,6 +43,7 @@ void Renderer::Render(const RenderObject & o)
 
 	}
 
+	//Do for any child objects
 	for (vector<RenderObject*>::const_iterator i = o.GetChildren().begin(); i != o.GetChildren().begin(); ++i) //Implement if using this for parent/child probably use SceneNode
 	{
 		Render(*(*i));
@@ -46,6 +52,8 @@ void Renderer::Render(const RenderObject & o)
 
 void Renderer::UpdateScene(float msec)
 {
+
+	//Update the scene
 	for (vector<RenderObject*>::iterator i = renderObjects.begin(); i != renderObjects.end(); ++i) {
 		(*i)->Update(msec);
 		

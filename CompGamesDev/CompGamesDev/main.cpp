@@ -1,5 +1,4 @@
 #include <nclgl\Window.h>
-#include "Renderer.h"
 #include <Common\EventQueue.h>
 #include <Renderer\Graphics.h>
 #include <Physics\Physics.h>

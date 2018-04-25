@@ -102,6 +102,9 @@ Mesh* Mesh::GenerateQuad() {
 
 }
 
+
+//CSC3224 NCODE Tyler Whitehead 150349006
+//Was created as an alternative to quad where the colour can be set by a vector 4 parameter
 Mesh* Mesh::GenerateSquare(Vector4 colour) {
 	Mesh* m = new Mesh();
 	m->numVertices = 4;
@@ -131,6 +134,7 @@ Mesh* Mesh::GenerateSquare(Vector4 colour) {
 	return m;
 
 }
+//CSC3224 NCODE BLOCK ENDS
 
 
 Mesh * Mesh::GenerateSphere()
