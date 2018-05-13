@@ -85,7 +85,7 @@ void Audio::RecieveEvent()
 			//Pop the event off the queue
 			if (eQueue->getEvents().at(i)->getSubsystems().size() - 1 == j
 				&& eQueue->getEvents().at(i)->getSubsystems().at(j) == GetSubsystem()) {
-				eQueue->popEvent();
+				eQueue->removeEvent(i);
 				return;
 			}
 		}

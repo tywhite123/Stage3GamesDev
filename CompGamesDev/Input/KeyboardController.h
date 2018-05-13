@@ -13,7 +13,7 @@ public:
 	bool right() { return Window::GetKeyboard()->KeyDown(KEYBOARD_D); }
 	bool left() { return Window::GetKeyboard()->KeyDown(KEYBOARD_A); }
 	bool down() { return Window::GetKeyboard()->KeyDown(KEYBOARD_S); }
-	bool attack() { return Window::GetKeyboard()->KeyDown(KEYBOARD_SPACE); }
+	bool attack() { return Window::GetKeyboard()->KeyTriggered(KEYBOARD_SPACE); }
 
 	bool CheckConnected() { return false; }
 	bool Refresh() { return false; }

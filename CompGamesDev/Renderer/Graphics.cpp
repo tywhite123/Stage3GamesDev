@@ -22,10 +22,10 @@ Graphics::Graphics(Window &w, vector<GameObject*>& objects, EventQueue* eq) : r(
 	for (auto ob : objects) {
 
 		//Check the type of object and change shader based on that
-		if(ob->getType() == ObjectType::Map || ob->getType() == ObjectType::Wall)
+		if(/*ob->getType() == ObjectType::Map ||*/ ob->getType() == ObjectType::Wall)
 			s = new Shader(SHADERDIR"basicVert.glsl", SHADERDIR"BasicFrag.glsl");
 
-		if (ob->getType() == ObjectType::Player || ob->getType() == ObjectType::Enemy || ob->getType() == ObjectType::Door)
+		if (ob->getType() == ObjectType::Player || ob->getType() == ObjectType::Enemy || ob->getType() == ObjectType::Door || ob->getType() == ObjectType::Map)
 			s = new Shader(SHADERDIR"basicVert.glsl", SHADERDIR"TexturedFragment.glsl");
 	
 		if (!s->LinkProgram()) {
@@ -41,6 +41,8 @@ Graphics::Graphics(Window &w, vector<GameObject*>& objects, EventQueue* eq) : r(
 		//Check for a texture and apply it if so
 		if (ob->getTexPath() != "Null") {
 			m->SetTexture(SOIL_load_OGL_texture(ob->getTexPath().c_str(), SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));
+
+			
 
 			if (!m->GetTexture()) {
 				return;
@@ -121,6 +123,51 @@ void Graphics::NewObject()
 	r.AddObject(*objList->at(objList->size() - 1), *o);
 }
 
+void Graphics::LoadLevel()
+{
+	for (auto ob : *objList) {
+
+		//Check the type of object and change shader based on that
+		if (ob->getType() == ObjectType::Map || ob->getType() == ObjectType::Wall)
+			s = new Shader(SHADERDIR"basicVert.glsl", SHADERDIR"BasicFrag.glsl");
+
+		if (ob->getType() == ObjectType::Player || ob->getType() == ObjectType::Enemy || ob->getType() == ObjectType::Door)
+			s = new Shader(SHADERDIR"basicVert.glsl", SHADERDIR"TexturedFragment.glsl");
+
+		if (!s->LinkProgram()) {
+			return;
+		}
+
+		//Get the shape type and generate the correct mesh
+		if (ob->getShape() == "Square")
+			m = Mesh::GenerateSquare(Vector4(0.0f, 0.0f, 1.0f, 1.0f));
+		else if (ob->getShape() == "Quad")
+			m = Mesh::GenerateQuad();
+
+		//Check for a texture and apply it if so
+		if (ob->getTexPath() != "Null") {
+			m->SetTexture(SOIL_load_OGL_texture(ob->getTexPath().c_str(), SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));
+
+			if (!m->GetTexture()) {
+				return;
+			}
+			tex = true;
+		}
+		else {
+			m->SetTexture(NULL);
+			tex = false;
+		}
+
+
+		//Crete the render object and set position
+		RenderObject* o = new RenderObject(m, s);
+		o->SetModelMatrix(Matrix4::Translation(ob->getPos()) * Matrix4::Scale(Vector3(ob->getScale().x, ob->getScale().y, ob->getScale().x)));
+		r.AddRenderObject(*o);
+		r.AddObject(*ob, *o);
+
+	}
+}
+
 void Graphics::RecieveEvent()
 {
 	//For each event check the subsystems
@@ -148,7 +195,7 @@ void Graphics::RecieveEvent()
 							else {
 								a++;
 							}
-							
+
 						}
 						if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::Move_Right) {
 							r.getRenderObj().at(o)->SetModelMatrix(Matrix4::Translation(Vector3(objList->at(o)->getXPos(), objList->at(o)->getYPos(), -10.0f)) * Matrix4::Rotation(0.0f, Vector3(0.0f, 0.0f, 1.0f)) * Matrix4::Scale(Vector3(objList->at(o)->getScale().x, objList->at(o)->getScale().y, 0.5f)));
@@ -171,7 +218,7 @@ void Graphics::RecieveEvent()
 							else {
 								a++;
 							}
-							
+
 						}
 						if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::Move_Down) {
 							r.getRenderObj().at(o)->SetModelMatrix(Matrix4::Translation(Vector3(objList->at(o)->getXPos(), objList->at(o)->getYPos(), -10.0f)) * Matrix4::Rotation(0.0f, Vector3(0.0f, 0.0f, 1.0f)) * Matrix4::Scale(Vector3(objList->at(o)->getScale().x, objList->at(o)->getScale().y, 0.5f)));
@@ -191,12 +238,12 @@ void Graphics::RecieveEvent()
 
 								//Check object type is the enemy or door
 								if (objList->at(z)->getType() == ObjectType::Enemy || objList->at(z)->getType() == ObjectType::Door) {
-									
+
 									//get its current hp and delete if it is dead
 									if (objList->at(z)->getHP() <= 0) {
 										r.removeRenderObj(objList->at(z));
 										objList->erase(objList->begin() + z);
-										
+
 										continue;
 									}
 								}
@@ -221,12 +268,26 @@ void Graphics::RecieveEvent()
 							r.getRenderObj().at(o)->SetModelMatrix(Matrix4::Translation(Vector3(objList->at(o)->getXPos(), objList->at(o)->getYPos(), -10.0f)) * Matrix4::Scale(Vector3(0.25f, 0.5f, 0.5f)));
 						}
 					}
+
+
+					if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::Finish_Level) {
+						for (int z = 0; z < objList->size(); ++z) {
+							r.removeRenderObj(objList->at(z));
+							
+						}
+						objList->clear();
+					}
+
+					if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::New_Level) {
+						LoadLevel();
+					}
+
 				}
 
 
 				//pop event
 				if (eQueue->getEvents().at(i)->getSubsystems().size() - 1 == j) {
-					eQueue->popEvent();
+					eQueue->removeEvent(i);
 					return;
 				}
 			}

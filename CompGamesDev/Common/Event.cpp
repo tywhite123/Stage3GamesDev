@@ -41,7 +41,26 @@ Event::Event(GameEnums::MType type)
 		subsystems.push_back(GameEnums::Subsystem::Physics);
 		subsystems.push_back(GameEnums::Subsystem::Graphics);
 	}
+	if (eventType == GameEnums::MType::Finish_Level) {
+		subsystems.push_back(GameEnums::Subsystem::Physics);
+		subsystems.push_back(GameEnums::Subsystem::Graphics);
+	}
 
+}
+
+Event::Event(GameEnums::MType type, bool newLvl, float data)
+{
+	eventType = type;
+	levelNew = newLvl;
+	this->data = data;
+
+	if (eventType == GameEnums::MType::Finish_Level) {
+
+	}
+	if (eventType == GameEnums::MType::New_Level) {
+		subsystems.push_back(GameEnums::Subsystem::Physics);
+		subsystems.push_back(GameEnums::Subsystem::Graphics);
+	}
 }
 
 

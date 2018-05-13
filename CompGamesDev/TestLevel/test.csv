@@ -1,7 +1,7 @@
 Object,Type,PosX,PosY,Depth,Rotation,ScaleX,ScaleY,Texture
 Player,Square,0,0,-10,0,0.25,0.5,..\TestLevel\goomba2.png
 Enemy,Square,1,1,-10,0,0.25,0.5,..\TestLevel\goomba2.png
-Map,Quad,0,0,-50,0,20,20,Null
+Map,Quad,0,0,-50,0,21,21,..\TestLevel\floor2.png
 Wall,Square,4,0,-10,0,0.3,10,Null
 Wall,Square,-4,0,-10,0,0.3,10,Null
 Wall,Square,0,-4,-10,0,7.7,0.5,Null

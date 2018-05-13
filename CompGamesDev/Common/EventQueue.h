@@ -13,6 +13,10 @@ public:
 	}
 
 	//pop event from the vector
+	void removeEvent(int pos) {
+		events.erase(events.begin()+pos);
+	}
+
 	void popEvent() {
 		events.pop_back();
 	}

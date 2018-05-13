@@ -3,6 +3,7 @@
 #include <Box2D\Box2D.h>
 #include <map>
 #include <vector>
+#include <iostream>
 #include <Common\GameObject.h>
 #include <Common\EventQueue.h>
 
@@ -14,6 +15,7 @@ public:
 
 	void PhysicsUpdate(float msec);
 	void NewObject();
+	void LoadLevel();
 
 	void RecieveEvent();
 

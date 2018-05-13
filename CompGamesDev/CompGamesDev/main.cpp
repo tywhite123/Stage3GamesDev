@@ -10,17 +10,19 @@
 
 int main() {
 
-	//Create a windo
+	//Create a window
 	Window w("CSC3224 - Game Engine", 1920, 1080);
 
 	//Create a store for the game objects
 	vector<GameObject*> gameObjects;
-
-	//load the game from csv and give it the game objects vector
-	GameLoader("..\\TestLevel\\test.csv", gameObjects);
-
+	
 	//Create an event queue
 	EventQueue* queue = new EventQueue();
+
+	//load the game from csv and give it the game objects vector
+	GameLoader loader("..\\TestLevel\\test.csv", gameObjects, queue);
+
+	
 
 	//Create each subsystem and give it what it needs
 	Physics physics(gameObjects, queue);
@@ -30,7 +32,8 @@ int main() {
 
 	Profiling profiler;
 
-	
+	//int i = 0;
+	//bool levelLoaded = true;
 
 	while (w.UpdateWindow() && !Window::GetKeyboard()->KeyDown(KEYBOARD_ESCAPE)) {
 		//get msec
@@ -52,9 +55,27 @@ int main() {
 		currentTime = w.GetTimer()->GetMS();
 		graphics.GraphicsUpdate(msec);
 		float graphicsTime = w.GetTimer()->GetMS() - currentTime;
-
-
 		
+		if (!gameObjects.empty()) {
+			if (gameObjects.at(0)->getPos().y >= 4 && (gameObjects.at(0)->getPos().x >= -2.17 && gameObjects.at(0)->getPos().x <= 2.17)) {
+					for (auto* q: queue->getEvents()) {
+						queue->popEvent();
+					}
+				
+				queue->pushEvent(new Event(GameEnums::MType::Finish_Level));
+			}
+		}
+		if (gameObjects.empty()) {
+			string file = "..\\TestLevel\\test";
+			int levelNo = 2;
+			file.append(to_string(levelNo));
+			file.append(".csv");
+
+			loader.LoadLevel(file);
+		}
+		
+
+		//i++;
 		//Update the profiler with the times of each system
 		profiler.profilerUpdate(msec, inputTime, physicsTime, graphicsTime, audioTime);
 

@@ -41,30 +41,23 @@ void Input::InputUpdate(float msec)
 
 	//Calls the control functions based on what the controller is
 	if (con->up()) {
-		//obj->at(0)->setYPos(obj->at(0)->getYPos() + 0.1f);
 		eQueue->pushEvent(new Event(GameEnums::MType::Move_Up));
 	}
-
 	else if (con->down()) {
-		//obj->at(0)->setYPos(obj->at(0)->getYPos() - 0.1f);
 		eQueue->pushEvent(new Event(GameEnums::MType::Move_Down));
 	}
-
 	else if (con->left()) {
-		//obj->at(0)->setXPos(obj->at(0)->getXPos() - 0.1f);
 		eQueue->pushEvent(new Event(GameEnums::MType::Move_Left));
 	}
 
 	else if (con->right()) {
-		//obj->at(0)->setXPos(obj->at(0)->getXPos() + 0.1f);
 		eQueue->pushEvent(new Event(GameEnums::MType::Move_Right));
+	}
+	else if (con->attack()) {
+		eQueue->pushEvent(new Event(GameEnums::MType::Attack));
 	}
 	else {
 		eQueue->pushEvent(new Event(GameEnums::MType::Rest));
-	}
-
-	if (con->attack()) {
-		eQueue->pushEvent(new Event(GameEnums::MType::Attack));
 	}
 
 }

@@ -1,12 +1,11 @@
 h:\gamedev\compgamesdev\renderer\x64\debug\graphics.pdb
-h:\gamedev\compgamesdev\renderer\x64\debug\graphics.idb
 h:\gamedev\compgamesdev\renderer\x64\debug\graphics.obj
 h:\gamedev\compgamesdev\renderer\x64\debug\renderer.obj
+h:\gamedev\compgamesdev\renderer\x64\debug\graphics.idb
+h:\gamedev\compgamesdev\lib\debug\graphics.lib
 h:\gamedev\compgamesdev\renderer\x64\debug\renderobject.obj
-h:\gamedev\compgamesdev\x64\debug\graphics.lib
-h:\gamedev\compgamesdev\renderer\x64\debug\graphics.obj.enc
 h:\gamedev\compgamesdev\renderer\x64\debug\renderer.obj.enc
-h:\gamedev\compgamesdev\x64\debug\graphics.pdb
+h:\gamedev\compgamesdev\lib\debug\graphics.pdb
 h:\gamedev\compgamesdev\renderer\x64\debug\graphics.tlog\cl.command.1.tlog
 h:\gamedev\compgamesdev\renderer\x64\debug\graphics.tlog\cl.read.1.tlog
 h:\gamedev\compgamesdev\renderer\x64\debug\graphics.tlog\cl.write.1.tlog

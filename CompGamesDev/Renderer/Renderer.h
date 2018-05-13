@@ -56,6 +56,10 @@ public:
 		obj.erase(o);
 	}
 
+	void SetRepeatTexture(GLuint target, bool repeating) {
+		SetTextureRepeating(target, repeating);
+	}
+
 protected:
 	vector<RenderObject*> renderObjects;
 	map<GameObject*, RenderObject*> obj;

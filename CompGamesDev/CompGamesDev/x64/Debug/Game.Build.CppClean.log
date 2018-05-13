@@ -1,10 +1,11 @@
 h:\gamedev\compgamesdev\compgamesdev\x64\debug\vc141.pdb
-h:\gamedev\compgamesdev\compgamesdev\x64\debug\main.obj
-h:\gamedev\compgamesdev\compgamesdev\x64\debug\renderer.obj
 h:\gamedev\compgamesdev\compgamesdev\x64\debug\vc141.idb
-h:\gamedev\compgamesdev\x64\debug\game.ilk
-h:\gamedev\compgamesdev\x64\debug\game.exe
-h:\gamedev\compgamesdev\x64\debug\game.pdb
+h:\gamedev\compgamesdev\compgamesdev\x64\debug\main.obj
+h:\gamedev\compgamesdev\debugx64\game.ilk
+h:\gamedev\compgamesdev\debugx64\game.exe
+h:\gamedev\compgamesdev\debugx64\game.pdb
+h:\gamedev\compgamesdev\compgamesdev\x64\debug\gameobject.obj
+h:\gamedev\compgamesdev\compgamesdev\x64\debug\renderer.obj
 h:\gamedev\compgamesdev\compgamesdev\x64\debug\game.tlog\cl.command.1.tlog
 h:\gamedev\compgamesdev\compgamesdev\x64\debug\game.tlog\cl.read.1.tlog
 h:\gamedev\compgamesdev\compgamesdev\x64\debug\game.tlog\cl.write.1.tlog

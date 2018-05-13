@@ -17,6 +17,8 @@ public:
 	//New object function which was used for testion
 	void NewObject();
 
+	void LoadLevel();
+
 
 	//Recive events
 	void RecieveEvent();
