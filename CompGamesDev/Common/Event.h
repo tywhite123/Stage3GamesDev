@@ -10,7 +10,7 @@ namespace GameEnums {
 
 	//Replace face and move into the same thing
 	enum MType {
-		Move_Left, Move_Right, Move_Up, Move_Down, New_Obj, Rest, Update_Pos_AI, Attack, Input_Time, Audio_Time, Physics_Time, Graphics_Time, New_Level, Finish_Level
+		Move_Left, Move_Right, Move_Up, Move_Down, New_Obj, Rest, Update_Pos_AI, Attack, Input_Time, Audio_Time, Physics_Time, Graphics_Time, New_Level, Finish_Level, All_Enemies_Dead
 	};
 };
 
@@ -27,6 +27,8 @@ public:
 	float getData() { return data; }
 	std::vector<GameEnums::Subsystem> getSubsystems() { return subsystems; }
 
+	bool Done() { return eventDone; }
+	void updateDone(bool d) { eventDone = d; }
 
 
 protected:
@@ -34,6 +36,8 @@ protected:
 	//event info variables
 	GameEnums::MType eventType;
 	std::vector<GameEnums::Subsystem> subsystems;
+
+	bool eventDone;
 
 	float data;
 

@@ -12,7 +12,7 @@ using namespace std;
 class Renderer : public OGLRenderer
 {
 public:
-	Renderer(Window &parent);
+	Renderer(Window &parent, vector<GameObject*>& objects);
 	virtual ~Renderer();
 
 	virtual void RenderScene();
@@ -36,6 +36,10 @@ public:
 
 	vector<RenderObject*> getRenderObj() {
 		return renderObjects;
+	}
+
+	RenderObject getRObj(GameObject &g) {
+		return *obj.at(&g);
 	}
 
 
@@ -63,6 +67,7 @@ public:
 protected:
 	vector<RenderObject*> renderObjects;
 	map<GameObject*, RenderObject*> obj;
+	std::vector<GameObject*>* objList;
 
 	GLTtext *playerHealth;
 	GLTtext *enemyHealth;

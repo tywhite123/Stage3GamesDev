@@ -32,6 +32,7 @@ Event::Event(GameEnums::MType type)
 	}
 	if (eventType == GameEnums::MType::Rest) {
 		subsystems.push_back(GameEnums::Subsystem::Physics);
+		subsystems.push_back(GameEnums::Subsystem::Graphics);
 	}
 	if (eventType == GameEnums::MType::Update_Pos_AI) {
 		subsystems.push_back(GameEnums::Subsystem::Graphics);
@@ -42,6 +43,10 @@ Event::Event(GameEnums::MType type)
 		subsystems.push_back(GameEnums::Subsystem::Graphics);
 	}
 	if (eventType == GameEnums::MType::Finish_Level) {
+		subsystems.push_back(GameEnums::Subsystem::Physics);
+		subsystems.push_back(GameEnums::Subsystem::Graphics);
+	}
+	if (eventType == GameEnums::MType::All_Enemies_Dead) {
 		subsystems.push_back(GameEnums::Subsystem::Physics);
 		subsystems.push_back(GameEnums::Subsystem::Graphics);
 	}

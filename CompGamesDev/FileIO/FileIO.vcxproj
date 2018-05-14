@@ -127,11 +127,13 @@
     <ClInclude Include="FileReader.h" />
     <ClInclude Include="GameLoader.h" />
     <ClInclude Include="GameSaver.h" />
+    <ClInclude Include="TextureReader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FileReader.cpp" />
     <ClCompile Include="GameLoader.cpp" />
     <ClCompile Include="GameSaver.cpp" />
+    <ClCompile Include="TextureReader.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

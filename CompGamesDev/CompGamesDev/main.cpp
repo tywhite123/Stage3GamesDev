@@ -5,6 +5,7 @@
 #include <Input\Input.h>
 #include <Audio\Audio.h>
 #include <FileIO\GameLoader.h>
+#include <FileIO\TextureReader.h>
 #include <Profiler\Profiling.h>
 
 
@@ -15,9 +16,14 @@ int main() {
 
 	//Create a store for the game objects
 	vector<GameObject*> gameObjects;
+	vector<pair<string, string>> textureList;
+
+	TextureReader("..\\TestLevel\\textures.csv", textureList);
 	
 	//Create an event queue
 	EventQueue* queue = new EventQueue();
+
+	
 
 	//load the game from csv and give it the game objects vector
 	GameLoader loader("..\\TestLevel\\test.csv", gameObjects, queue);
@@ -26,7 +32,7 @@ int main() {
 
 	//Create each subsystem and give it what it needs
 	Physics physics(gameObjects, queue);
-	Graphics graphics(w, gameObjects, queue);
+	Graphics graphics(w, gameObjects, queue, textureList);
 	Input input(w, gameObjects, queue);
 	Audio audio(queue);
 
@@ -57,7 +63,7 @@ int main() {
 		float graphicsTime = w.GetTimer()->GetMS() - currentTime;
 		
 		if (!gameObjects.empty()) {
-			if (gameObjects.at(0)->getPos().y >= 4 && (gameObjects.at(0)->getPos().x >= -2.17 && gameObjects.at(0)->getPos().x <= 2.17)) {
+			if (gameObjects.at(0)->getPos().y >= 3.8f && (gameObjects.at(0)->getPos().x >= -2.17 && gameObjects.at(0)->getPos().x <= 2.17)) {
 					for (auto* q: queue->getEvents()) {
 						queue->popEvent();
 					}

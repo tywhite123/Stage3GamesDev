@@ -1,1 +1,3 @@
-﻿  FileIO.vcxproj -> H:\GameDev\CompGamesDev\lib\Debug\FileIO.lib
+﻿  GameLoader.cpp
+h:\gamedev\compgamesdev\fileio\gameloader.cpp(160): warning C4244: 'argument': conversion from 'unsigned __int64' to 'float', possible loss of data
+  FileIO.vcxproj -> H:\GameDev\CompGamesDev\lib\Debug\FileIO.lib

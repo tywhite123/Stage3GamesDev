@@ -18,6 +18,12 @@ bool Gamepad::IsPressed(WORD button)
 	return (getState().Gamepad.wButtons & button) != 0;
 }
 
+bool Gamepad::IsTriggered(WORD button)
+{
+
+	return IsPressed(button) && (lastState.Gamepad.wButtons != state.Gamepad.wButtons);
+}
+
 bool Gamepad::CheckConnected()
 {
 
@@ -40,6 +46,9 @@ bool Gamepad::CheckConnected()
 
 bool Gamepad::Refresh()
 {
+
+	lastState = state;
+
 	//CHeck if controller is connected
 	if (controllerID == -1) {
 		CheckConnected();

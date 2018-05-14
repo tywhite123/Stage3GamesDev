@@ -3,6 +3,7 @@
 #include <nclgl\Vector2.h>
 #include <nclgl\Vector3.h>
 #include <string>
+#include <Common\Event.h>
 
 //Enum for the object type
 enum ObjectType {
@@ -14,7 +15,7 @@ class GameObject
 {
 public:
 	GameObject(float x, float y);
-	GameObject(float x, float y, float depth, float rot, float sX, float sY, std::string type, std::string shape, std::string tex);
+	GameObject(float x, float y, float depth, float rot, float sX, float sY, std::string type, std::string shape, bool transparent, std::string regTex, std::string attackTex);
 	~GameObject();
 
 
@@ -35,15 +36,20 @@ public:
 
 	ObjectType getType() { return objType; }
 	
-	std::string getTexPath() { return texPath; }
+	std::string getTexture() { return texPath; }
+
+	std::string getAttackTex() { return attackTex; }
 
 	std::string getShape() { return shapeType; }
+
+	bool Transparent() { return isTransparent; }
 
 	void setHP(int h) { hp = h; }
 	void updateHP(int h) { hp += h; }
 	int getHP() { return hp; }
 
-
+	int getMovement() { return movement; }
+	void setMovement(int m) { movement = m; }
 
 protected:
 	//Object info variables
@@ -54,8 +60,14 @@ protected:
 	ObjectType objType;
 
 	std::string texPath;
+	std::string attackTex;
+
+	bool isTransparent;
+
 	std::string shapeType;
 	
 	int hp;
+
+	int movement;
 };
 

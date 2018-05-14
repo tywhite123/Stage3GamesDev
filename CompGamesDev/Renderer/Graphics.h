@@ -8,7 +8,7 @@
 class Graphics
 {
 public:
-	Graphics(Window &parent, vector<GameObject*>& objects, EventQueue* eq);
+	Graphics(Window &parent, vector<GameObject*>& objects, EventQueue* eq, vector<pair<string, string>>&textureList);
 	~Graphics();
 
 	//Update the graphics
@@ -22,6 +22,10 @@ public:
 
 	//Recive events
 	void RecieveEvent();
+
+	void CheckEnemiesLeft();
+
+	void UpdateEnemy();
 
 
 	//Get subsystem
@@ -52,5 +56,15 @@ private:
 	int a;
 
 	float msec;
+
+	int enemiesLeft;
+
+	float timeToRest;
+	bool attack;
+
+	bool doorGone;
+
+	std::map<string, GLuint> textures;
+
 };
 

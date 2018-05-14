@@ -1,9 +1,13 @@
 #include "Renderer.h"
 
-Renderer::Renderer(Window & parent) : OGLRenderer(parent)
+Renderer::Renderer(Window & parent, vector<GameObject*>& objects) : OGLRenderer(parent)
 {
+	objList = &objects;
+
 	glEnable(GL_DEPTH_TEST);
 
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	gltInit();
 	playerHealth = gltCreateText();
@@ -24,10 +28,23 @@ Renderer::~Renderer(void)
 
 void Renderer::RenderScene()
 {
-
+	std::vector<RenderObject*> transparentObj;
 	//Render the scene and call render for each render objec
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	
+
+	int place = 0;
 	for (vector<RenderObject*>::iterator i = renderObjects.begin(); i != renderObjects.end(); ++i) {
+		if (objList->at(place)->Transparent()) {
+			transparentObj.push_back(renderObjects.at(place));
+		}
+		else {
+			Render(*(*i));
+		}
+		place++;
+	}
+
+	for (vector<RenderObject*>::iterator i = transparentObj.begin(); i != transparentObj.end(); ++i) {
 		Render(*(*i));
 	}
 

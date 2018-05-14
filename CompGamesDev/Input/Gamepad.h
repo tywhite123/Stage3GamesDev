@@ -12,6 +12,7 @@ public:
 
 	//Bools for checking the controllers condition
 	bool IsPressed(WORD button);
+	bool IsTriggered(WORD button);
 	bool CheckConnected();
 	bool Refresh();
 
@@ -26,13 +27,16 @@ public:
 	bool right() { return IsPressed(XINPUT_GAMEPAD_DPAD_RIGHT) || getLX() >= 10000; }
 	bool left() { return IsPressed(XINPUT_GAMEPAD_DPAD_LEFT) || getLX() <= -10000; }
 	bool down() { return IsPressed(XINPUT_GAMEPAD_DPAD_DOWN) || getLY() <= -10000; }
-	bool attack() { return IsPressed(XINPUT_GAMEPAD_X); }
+	bool attack() { return IsTriggered(XINPUT_GAMEPAD_X); }
 
 	XINPUT_STATE getState();
 
 protected:
 	//Variable the controller state
 	XINPUT_STATE state;
+
+	//The last state
+	XINPUT_STATE lastState;
 
 	//Id of the controller
 	int controllerID;

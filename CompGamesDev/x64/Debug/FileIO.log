@@ -1,7 +1,9 @@
-﻿  GameSaver.cpp
+﻿  FileReader.cpp
+h:\gamedev\compgamesdev\fileio\filereader.h(4): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Generating Code...
+  Compiling...
+  GameSaver.cpp
   GameLoader.cpp
 h:\gamedev\compgamesdev\fileio\gameloader.cpp(153): warning C4244: 'argument': conversion from 'unsigned __int64' to 'float', possible loss of data
-  FileReader.cpp
-h:\gamedev\compgamesdev\fileio\filereader.h(4): warning C4067: unexpected tokens following preprocessor directive - expected a newline
   Generating Code...
   FileIO.vcxproj -> H:\GameDev\CompGamesDev\lib\Debug\FileIO.lib

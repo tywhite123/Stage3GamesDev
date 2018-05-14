@@ -8,7 +8,7 @@ GameObject::GameObject(float x, float y)
 	objectPos.y = y;
 }
 
-GameObject::GameObject(float x, float y, float depth, float rot, float sX, float sY, std::string type, std::string shape, std::string tex)
+GameObject::GameObject(float x, float y, float depth, float rot, float sX, float sY, std::string type, std::string shape, bool transparent,std::string tex, std::string attack)
 {
 	//Assign all the variables to the object
 	objectPos = Vector3(x, y, depth);
@@ -29,6 +29,9 @@ GameObject::GameObject(float x, float y, float depth, float rot, float sX, float
 
 	shapeType = shape;
 	texPath = tex;
+	attackTex = attack;
+	isTransparent = transparent;
+	movement = 0;
 
 }
 

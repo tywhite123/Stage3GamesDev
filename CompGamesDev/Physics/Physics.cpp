@@ -42,7 +42,7 @@ Physics::Physics(std::vector<GameObject*>& objects, EventQueue* eq) : objList(&o
 			bodyDef.type = b2_dynamicBody;
 		}
 		if (ob->getType() == ObjectType::Enemy) {
-			bodyDef.type = b2_staticBody;
+			bodyDef.type = b2_dynamicBody;
 		}
 		if (ob->getType() == ObjectType::Wall || ob->getType() == ObjectType::Door) {
 			bodyDef.type = b2_staticBody;
@@ -84,8 +84,46 @@ Physics::~Physics()
 void Physics::PhysicsUpdate(float msec)
 {
 	RecieveEvent();
-	world.Step(timeStep, velocityIterations, positionIterations);
+	//world.Step(timeStep, velocityIterations, positionIterations);
+	for (auto ob : *objList) {
+		if (ob->getType() == ObjectType::Enemy && ob->getHP() != 0) {
+			if (ob->getPos().x > 3.25) {
+				/*b2Vec2 vel = obj.at(ob)->GetLinearVelocity();
+				vel.x = 0.5f;
+				vel.y = 0.0f;
+				obj.at(ob)->SetLinearVelocity(vel);*/
+				ob->setMovement(0);
+			}
+			else if (ob->getPos().x < -3.25) {
+				/*b2Vec2 vel = obj.at(ob)->GetLinearVelocity();
+				vel.x = -0.5f;
+				vel.y = 0.0f;
+				obj.at(ob)->SetLinearVelocity(vel);*/
+				ob->setMovement(1);
 
+			}
+
+			if (ob->getMovement() == 0) {
+				//ob->setXPos(ob->getPos().x - 0.25f);
+				b2Vec2 vel = obj.at(ob)->GetLinearVelocity();
+				vel.x = -0.5f;
+				vel.y = 0.0f;
+				obj.at(ob)->SetLinearVelocity(vel);
+			}
+			else if (ob->getMovement() == 1) {
+				b2Vec2 vel = obj.at(ob)->GetLinearVelocity();
+				vel.x = 0.5f;
+				vel.y = 0.0f;
+				obj.at(ob)->SetLinearVelocity(vel);
+				//ob->setXPos(ob->getPos().x + 0.25f);
+			}
+
+		}
+
+	}
+
+
+	world.Step(timeStep, velocityIterations, positionIterations);
 	for (b2Contact* contact = world.GetContactList(); contact; contact = contact->GetNext()) {		
 		contact->GetFixtureA()->GetBody()->SetLinearVelocity(b2Vec2(0.0f, 0.0f));
 		contact->GetFixtureA()->GetBody()->SetAngularVelocity(0);
@@ -93,6 +131,9 @@ void Physics::PhysicsUpdate(float msec)
 
 		//eQueue->pushEvent(new Event(GameEnums::MType::Update_Pos_AI));
 	}
+
+
+	
 
 	b2Vec2 pos;
 
@@ -106,15 +147,9 @@ void Physics::PhysicsUpdate(float msec)
 		
 
 		
-		//printf("%4.2f %4.2f %4.2f\n", o.first->getXPos(), o.first->getYPos(), angle);
+		printf("%4.2f %4.2f %4.2f\n", o.first->getXPos(), o.first->getYPos(), angle);
 		//printf("Enum Val: %d, Health: %d\n", o.first->getType(), o.first->getHP());
-	}
-
-
-
-	
-
-	
+	}	
 
 }
 
@@ -208,28 +243,28 @@ void Physics::RecieveEvent()
 
 					if (objList->at(o)->getType() == ObjectType::Player) {
 						if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::Move_Left) {
-							b2Vec2 vel = obj.at(objList->at(0))->GetLinearVelocity();
+							b2Vec2 vel = obj.at(objList->at(o))->GetLinearVelocity();
 							vel.x = -0.5f;
 							vel.y = 0.0f;
-							obj.at(objList->at(0))->SetLinearVelocity(vel);
+							obj.at(objList->at(o))->SetLinearVelocity(vel);
 						}
 						if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::Move_Right) {
-							b2Vec2 vel = obj.at(objList->at(0))->GetLinearVelocity();
+							b2Vec2 vel = obj.at(objList->at(o))->GetLinearVelocity();
 							vel.x = 0.5f;
 							vel.y = 0.0f;
-							obj.at(objList->at(0))->SetLinearVelocity(vel);
+							obj.at(objList->at(o))->SetLinearVelocity(vel);
 						}
 						if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::Move_Up) {
-							b2Vec2 vel = obj.at(objList->at(0))->GetLinearVelocity();
+							b2Vec2 vel = obj.at(objList->at(o))->GetLinearVelocity();
 							vel.x = 0.0f;
 							vel.y = 0.5f;
-							obj.at(objList->at(0))->SetLinearVelocity(vel);
+							obj.at(objList->at(o))->SetLinearVelocity(vel);
 						}
 						if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::Move_Down) {
-							b2Vec2 vel = obj.at(objList->at(0))->GetLinearVelocity();
+							b2Vec2 vel = obj.at(objList->at(o))->GetLinearVelocity();
 							vel.x = 0.0f;
 							vel.y = -0.5f;
-							obj.at(objList->at(0))->SetLinearVelocity(vel);
+							obj.at(objList->at(o))->SetLinearVelocity(vel);
 						}
 						if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::New_Obj) {
 							NewObject();
@@ -280,6 +315,16 @@ void Physics::RecieveEvent()
 				if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::New_Level) {
 					LoadLevel();
 						
+				}
+
+				if (eQueue->getEvents().at(i)->getType() == GameEnums::MType::All_Enemies_Dead) {
+					for (auto ob : *objList) {
+						if (ob->getType() == ObjectType::Door) {
+							std::string hello;
+							world.DestroyBody(obj.at(ob));
+							obj.erase(ob);
+						}
+					}
 				}
 			
 

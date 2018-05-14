@@ -9,12 +9,13 @@ GameLoader::GameLoader(std::string gameInfo, std::vector<GameObject*>& objects, 
 	objList = &objects;
 	eQueue = eq;
 
+
 	//Create a file stream and open the file
 	std::ifstream level;
 	level.open(gameInfo);
 
 	//Setup the array for the information
-	std::string testInfo[9][10];
+	std::string testInfo[11][11];
 	
 	//check if file is open
 	if (level) {
@@ -42,7 +43,7 @@ GameLoader::GameLoader(std::string gameInfo, std::vector<GameObject*>& objects, 
 				heading++;
 
 				//if heading is at 9 restart
-				if (heading == 9)
+				if (heading == 11)
 					heading = 0;
 			}
 
@@ -50,8 +51,8 @@ GameLoader::GameLoader(std::string gameInfo, std::vector<GameObject*>& objects, 
 			line++;
 
 			//if at 10 restart
-			if (line == 10)
-				line = 0;
+			/*if (line == 11)
+				line = 0;*/
 		}
 
 	}
@@ -68,7 +69,13 @@ GameLoader::GameLoader(std::string gameInfo, std::vector<GameObject*>& objects, 
 		}*/
 		//for each line create a game object for it
 		std::string::size_type sz;
-		objList->push_back(new GameObject(std::stof(testInfo[2][i],&sz), std::stof(testInfo[3][i], &sz), std::stof(testInfo[4][i], &sz), std::stof(testInfo[5][i], &sz), std::stof(testInfo[6][i], &sz), std::stof(testInfo[7][i], &sz), testInfo[0][i], testInfo[1][i], testInfo[8][i]));
+		bool transparent;
+		if (testInfo[8][i] == "1")
+			transparent = true;
+		else
+			transparent = false;
+
+		objList->push_back(new GameObject(std::stof(testInfo[2][i],&sz), std::stof(testInfo[3][i], &sz), std::stof(testInfo[4][i], &sz), std::stof(testInfo[5][i], &sz), std::stof(testInfo[6][i], &sz), std::stof(testInfo[7][i], &sz), testInfo[0][i], testInfo[1][i], std::stoi(testInfo[8][i], &sz), testInfo[9][i], testInfo[10][i]));
 	}
 
 }
@@ -92,7 +99,7 @@ void GameLoader::LoadLevel(std::string gameInfo)
 	level.open(gameInfo);
 
 	//Setup the array for the information
-	std::string testInfo[9][10];
+	std::string testInfo[11][10];
 
 	//variable to put in the info in the correct place in the info array
 	int line = 0;
@@ -121,7 +128,7 @@ void GameLoader::LoadLevel(std::string gameInfo)
 				heading++;
 
 				//if heading is at 9 restart
-				if (heading == 9)
+				if (heading == 11)
 					heading = 0;
 			}
 
@@ -147,7 +154,7 @@ void GameLoader::LoadLevel(std::string gameInfo)
 		}*/
 		//for each line create a game object for it
 		std::string::size_type sz;
-		objList->push_back(new GameObject(std::stof(testInfo[2][i], &sz), std::stof(testInfo[3][i], &sz), std::stof(testInfo[4][i], &sz), std::stof(testInfo[5][i], &sz), std::stof(testInfo[6][i], &sz), std::stof(testInfo[7][i], &sz), testInfo[0][i], testInfo[1][i], testInfo[8][i]));
+		objList->push_back(new GameObject(std::stof(testInfo[2][i], &sz), std::stof(testInfo[3][i], &sz), std::stof(testInfo[4][i], &sz), std::stof(testInfo[5][i], &sz), std::stof(testInfo[6][i], &sz), std::stof(testInfo[7][i], &sz), testInfo[0][i], testInfo[1][i], std::stoi(testInfo[8][i], &sz), testInfo[9][i], testInfo[10][i]));
 	}
 
 	eQueue->pushEvent(new Event(GameEnums::MType::New_Level, true, objList->size()));

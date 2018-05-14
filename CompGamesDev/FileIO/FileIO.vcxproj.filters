@@ -24,6 +24,9 @@
     <ClInclude Include="GameSaver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TextureReader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FileReader.cpp">
@@ -33,6 +36,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GameSaver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureReader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
