@@ -1,0 +1,8 @@
+Levels,4
+Textures,..\Levels\Textures.csv
+Level Files,..\Levels\Level
+Level File Type,.csv
+Level1 Obj,10
+Level2 Obj,10
+Level3 Obj,10
+Level4 Obj,10
